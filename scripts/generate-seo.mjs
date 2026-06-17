@@ -509,6 +509,25 @@ function renderWaitlist(page) {
   </section>`;
 }
 
+function renderAnalyticsScript(source) {
+  return `<script>
+    (() => {
+      const payload = {
+        eventName: "page_view",
+        source: "${source}",
+        path: window.location.pathname,
+        referrer: document.referrer
+      };
+      fetch("/api/events", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(payload),
+        keepalive: true
+      }).catch(() => {});
+    })();
+  </script>`;
+}
+
 function renderPage(page) {
   const canonical = absoluteUrl(page.path);
   const related = (page.related || relatedDefault).filter((item) => item.href !== page.path);
@@ -618,6 +637,7 @@ function renderPage(page) {
   <footer>
     <main>Promptlaiy teaches better prompting for Codex, Cursor, and coding agents through short browser drills.</main>
   </footer>
+  ${renderAnalyticsScript("seo")}
 </body>
 </html>`;
 }

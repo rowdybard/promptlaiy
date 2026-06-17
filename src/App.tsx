@@ -219,16 +219,27 @@ function App() {
     };
   }, []);
 
+  useEffect(() => {
+    recordServerEvent("page_view", undefined, "", "app");
+  }, []);
+
   function updateState(nextState: StoredState) {
     setState(nextState);
     saveState(nextState);
   }
 
-  function recordServerEvent(eventName: string, lessonId?: number, betaInterest = selectedBetaInterest) {
+  function recordServerEvent(eventName: string, lessonId?: number, betaInterest = selectedBetaInterest, source = "app") {
     void fetch("/api/events", {
       method: "POST",
       headers: { "content-type": "application/json" },
-      body: JSON.stringify({ eventName, lessonId, betaInterest }),
+      body: JSON.stringify({
+        eventName,
+        lessonId,
+        betaInterest,
+        source,
+        path: window.location.pathname,
+        referrer: document.referrer,
+      }),
     }).catch(() => undefined);
   }
 
