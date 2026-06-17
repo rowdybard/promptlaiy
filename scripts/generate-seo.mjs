@@ -635,9 +635,98 @@ function renderPage(page) {
     </section>
   </main>
   <footer>
-    <main>Promptlaiy teaches better prompting for Codex, Cursor, and coding agents through short browser drills.</main>
+    <main>Promptlaiy teaches better prompting for Codex, Cursor, and coding agents through short browser drills. <a href="/sitemap/">Browse every guide</a>.</main>
   </footer>
   ${renderAnalyticsScript("seo")}
+</body>
+</html>`;
+}
+
+function renderHtmlSitemap() {
+  const itemList = pages.map((page, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    url: absoluteUrl(page.path),
+    name: page.h1,
+  }));
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "Promptlaiy Guides",
+    description: "All Promptlaiy guides about better prompting, agent IDEs, Codex, Cursor, and AI coding agent pricing.",
+    url: absoluteUrl("/sitemap/"),
+    mainEntity: {
+      "@type": "ItemList",
+      itemListElement: itemList,
+    },
+  };
+
+  return `<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>All Promptlaiy Guides | Better Prompting, Agent IDEs, Codex, Cursor</title>
+  <meta name="description" content="Browse every Promptlaiy guide about better prompting, agent IDEs, AI coding agents, Codex, Cursor, and AI coding agent pricing." />
+  <link rel="canonical" href="${absoluteUrl("/sitemap/")}" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="All Promptlaiy Guides" />
+  <meta property="og:description" content="Browse every Promptlaiy guide about better prompting, agent IDEs, Codex, Cursor, and AI coding agent pricing." />
+  <meta property="og:url" content="${absoluteUrl("/sitemap/")}" />
+  <script type="application/ld+json">${JSON.stringify(jsonLd)}</script>
+  <style>
+    :root { color: #15201b; background: #f8f6ee; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-width: 320px; background: linear-gradient(180deg, #f8f6ee, #eef4e8); }
+    a { color: #116c48; font-weight: 850; }
+    .topbar { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 16px clamp(18px, 4vw, 48px); border-bottom: 1px solid rgba(21,32,27,.14); background: rgba(248,246,238,.92); }
+    .brand { display: inline-flex; align-items: center; gap: 10px; color: #15201b; text-decoration: none; font-weight: 950; font-size: 18px; }
+    .brand-mark { display: grid; width: 34px; height: 34px; place-items: center; border: 2px solid #15201b; border-radius: 8px; background: #9fe870; box-shadow: 3px 3px 0 #15201b; }
+    nav { display: flex; flex-wrap: wrap; gap: 10px; }
+    nav a { color: #2d3a34; text-decoration: none; font-size: 14px; padding: 8px 10px; border-radius: 8px; }
+    main { width: min(1060px, calc(100% - 28px)); margin: 0 auto; }
+    .hero { padding: clamp(42px, 8vw, 84px) 0 24px; }
+    .eyebrow { margin: 0 0 10px; color: #47715e; font-size: 12px; font-weight: 950; text-transform: uppercase; }
+    h1 { max-width: 900px; margin: 0; font-size: clamp(42px, 8vw, 80px); line-height: .94; letter-spacing: 0; }
+    .intro { max-width: 740px; margin: 20px 0 0; color: #415048; font-size: clamp(18px, 2vw, 22px); line-height: 1.45; font-weight: 700; }
+    .guide-list { display: grid; gap: 12px; margin: 8px 0 48px; padding: 0; list-style: none; }
+    .guide-list li { padding: clamp(16px, 3vw, 24px); border: 1px solid rgba(21,32,27,.14); border-radius: 8px; background: rgba(255,255,255,.78); box-shadow: 0 18px 50px rgba(61,67,56,.1); }
+    .guide-list a { display: inline-block; margin-bottom: 8px; color: #15201b; font-size: clamp(22px, 3vw, 32px); line-height: 1.04; text-decoration: none; }
+    .guide-list p { margin: 0; color: #435149; font-size: 17px; line-height: 1.55; font-weight: 650; }
+    footer { padding: 24px 0 46px; color: #526058; font-weight: 750; }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/"><span class="brand-mark">P</span><span>Promptlaiy</span></a>
+    <nav aria-label="Primary">
+      <a href="/">Practice</a>
+      <a href="/learn/">Learn</a>
+      <a href="/agent-ide/">Agent IDE</a>
+      <a href="/ai-coding-agent-pricing/">Pricing reality</a>
+    </nav>
+  </header>
+  <main>
+    <section class="hero">
+      <p class="eyebrow">Guide index</p>
+      <h1>All Promptlaiy Guides</h1>
+      <p class="intro">A crawlable index of every Promptlaiy page about better prompting, agent IDEs, Codex, Cursor, and AI coding agent pricing.</p>
+    </section>
+    <ol class="guide-list">
+      ${pages
+        .map(
+          (page) => `<li>
+        <a href="${page.path}">${escapeHtml(page.h1)}</a>
+        <p>${escapeHtml(page.description)}</p>
+      </li>`,
+        )
+        .join("\n")}
+    </ol>
+  </main>
+  <footer>
+    <main><a href="/sitemap.xml">XML sitemap</a> for crawlers.</main>
+  </footer>
+  ${renderAnalyticsScript("seo-sitemap")}
 </body>
 </html>`;
 }
@@ -648,8 +737,14 @@ async function writePage(page) {
   await writeFile(path.join(outputDir, "index.html"), renderPage(page), "utf8");
 }
 
+async function writeHtmlSitemap() {
+  const outputDir = path.join(distDir, "sitemap");
+  await mkdir(outputDir, { recursive: true });
+  await writeFile(path.join(outputDir, "index.html"), renderHtmlSitemap(), "utf8");
+}
+
 function renderSitemap() {
-  const urls = ["/", ...pages.map((page) => page.path)];
+  const urls = ["/", "/sitemap/", ...pages.map((page) => page.path)];
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${urls
@@ -666,6 +761,7 @@ ${urls
 
 async function main() {
   await Promise.all(pages.map(writePage));
+  await writeHtmlSitemap();
   await writeFile(path.join(distDir, "sitemap.xml"), renderSitemap(), "utf8");
   await writeFile(
     path.join(distDir, "robots.txt"),
