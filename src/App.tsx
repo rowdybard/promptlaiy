@@ -585,11 +585,11 @@ function App() {
 
       <section className="money-band" id="pricing">
         <div>
-          <span className="eyebrow">Price check</span>
-          <h2>Let people try it before asking for money.</h2>
+          <span className="eyebrow">Beta access</span>
+          <h2>Start free. Go deeper when you are ready.</h2>
           <p>
-            The first five lessons stay free. After that, the page checks whether people want more drills or a live
-            build session.
+            Try the first five prompt drills free. Join the beta list for advanced scenarios, saved progress, and live
+            workflow help.
           </p>
         </div>
         <div className="pricing-grid">
@@ -620,8 +620,8 @@ function App() {
       <section className="waitlist-band" id="waitlist">
         <div>
           <span className="eyebrow">Beta list</span>
-          <h2>{hasCompletedAll ? "Want the next set of lessons?" : "Join before I build the rest."}</h2>
-          <p>Leave your email if this is close to something you would actually use.</p>
+          <h2>{hasCompletedAll ? "Keep practicing with the next lesson set." : "Get the next Promptlaiy lessons."}</h2>
+          <p>Join the beta list for new prompt drills, agent workflow examples, and early pricing access.</p>
         </div>
         <form className="waitlist-form" onSubmit={joinWaitlist}>
           <label htmlFor="waitlist-email">Email</label>

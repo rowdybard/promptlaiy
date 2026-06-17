@@ -491,8 +491,8 @@ function renderWaitlist(page) {
   return `<section class="cta" id="waitlist">
     <div>
       <p class="eyebrow">Try the prompt drills</p>
-      <h2>Want the next set of lessons?</h2>
-      <p>Leave your email if this is close to something you would actually use.</p>
+      <h2>Get the next Promptlaiy lessons.</h2>
+      <p>Join the beta list for new prompt drills, agent workflow examples, and early pricing access.</p>
     </div>
     <form method="post" action="/api/waitlist">
       <input type="hidden" name="source" value="seo:${page.path}" />
@@ -504,7 +504,7 @@ function renderWaitlist(page) {
         <input id="email-${page.path.replaceAll("/", "-")}" type="email" name="email" placeholder="founder@example.com" required />
         <button type="submit">Join waitlist</button>
       </div>
-      <p class="form-note">No newsletter machine yet. Just a signal that this should exist.</p>
+      <p class="form-note">No spam. Just beta updates and new lessons.</p>
     </form>
   </section>`;
 }
