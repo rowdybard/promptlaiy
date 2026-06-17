@@ -20,6 +20,32 @@ function isValidEmail(email) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) && email.length <= 254;
 }
 
+function isFormRequest(request) {
+  const contentType = request.headers.get("content-type") || "";
+  return contentType.includes("application/x-www-form-urlencoded") || contentType.includes("multipart/form-data");
+}
+
+function safeRedirectUrl(request, value, status) {
+  const requestUrl = new URL(request.url);
+  let target;
+  try {
+    target = value ? new URL(String(value), requestUrl.origin) : new URL(request.headers.get("referer") || "/", requestUrl.origin);
+  } catch {
+    target = new URL("/", requestUrl.origin);
+  }
+
+  if (target.origin !== requestUrl.origin) {
+    target = new URL("/", requestUrl.origin);
+  }
+
+  target.searchParams.set(status === "joined" ? "joined" : "error", status === "joined" ? "1" : "email");
+  return target.toString();
+}
+
+function redirectForForm(request, payload, status) {
+  return Response.redirect(safeRedirectUrl(request, payload?.returnTo, status), 303);
+}
+
 async function getCount(env) {
   const row = await env.DB.prepare("SELECT COUNT(*) AS count FROM waitlist_signups").first();
   return Number(row?.count ?? 0);
@@ -34,19 +60,34 @@ export async function onRequestGet({ env }) {
 }
 
 export async function onRequestPost({ request, env }) {
+  const wantsFormRedirect = isFormRequest(request);
   let payload;
   try {
-    payload = await request.json();
+    if (wantsFormRedirect) {
+      const formData = await request.formData();
+      payload = Object.fromEntries(formData.entries());
+    } else {
+      payload = await request.json();
+    }
   } catch {
+    if (wantsFormRedirect) {
+      return redirectForForm(request, {}, "error");
+    }
     return jsonResponse({ ok: false, error: "Invalid JSON body." }, 400);
   }
 
   if (payload?.company) {
+    if (wantsFormRedirect) {
+      return redirectForForm(request, payload, "joined");
+    }
     return jsonResponse({ ok: true, status: "accepted", count: await getCount(env) });
   }
 
   const email = normalizeEmail(payload?.email);
   if (!isValidEmail(email)) {
+    if (wantsFormRedirect) {
+      return redirectForForm(request, payload, "error");
+    }
     return jsonResponse({ ok: false, error: "Enter a valid email address." }, 400);
   }
 
@@ -72,6 +113,10 @@ export async function onRequestPost({ request, env }) {
     )
       .bind(crypto.randomUUID(), email, source, betaInterest, userAgent, now, now)
       .run();
+  }
+
+  if (wantsFormRedirect) {
+    return redirectForForm(request, payload, "joined");
   }
 
   return jsonResponse({

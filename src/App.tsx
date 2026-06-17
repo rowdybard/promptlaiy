@@ -369,6 +369,9 @@ function App() {
         </button>
         <nav className="nav-actions" aria-label="Validation actions">
           <a href="#lessons">Lessons</a>
+          <a href="/learn/">Learn</a>
+          <a href="/agent-ide/">Agent IDE</a>
+          <a href="/ai-coding-agent-pricing/">Pricing reality</a>
           <a href="#pricing">Beta</a>
           <a href="#waitlist">Waitlist</a>
         </nav>
@@ -507,6 +510,11 @@ function App() {
             <Rocket size={24} />
             <h2>Get better at prompting Codex and Cursor one rewrite at a time.</h2>
             <p>Short drills for founders and operators who want better software help without learning a full coding stack.</p>
+            <div className="resource-links" aria-label="Promptlaiy learning pages">
+              <a href="/learn/">Better prompting guide</a>
+              <a href="/agent-ide/">What is an agent IDE?</a>
+              <a href="/ai-coding-agent-pricing/">AI pricing reality</a>
+            </div>
           </div>
 
           <div className="stats-grid">

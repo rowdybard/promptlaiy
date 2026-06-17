@@ -512,6 +512,26 @@ button:disabled {
   font-weight: 650;
 }
 
+.resource-links {
+  display: grid;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.resource-links a {
+  display: flex;
+  min-height: 38px;
+  align-items: center;
+  padding: 8px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 900;
+}
+
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
