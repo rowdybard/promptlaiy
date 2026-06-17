@@ -56,9 +56,9 @@ type StoredState = {
 const lessons: Lesson[] = [
   {
     id: 1,
-    title: "Make A Vague Ask Usable",
-    lane: "The basic move",
-    concept: "A good request says what you want, what the tool should know, and what you want back.",
+    title: "Make A Vague Prompt Specific",
+    lane: "Better prompting",
+    concept: "A better prompt says what you want, what the tool should know, and what you want back.",
     badPrompt: "Help me with my business.",
     scenario: "You run a small coaching business and have one evening to choose the first thing to test.",
     example:
@@ -67,20 +67,20 @@ const lessons: Lesson[] = [
   },
   {
     id: 2,
-    title: "Turn An Idea Into A Task",
-    lane: "Build requests",
-    concept: "A coding tool needs the thing to make, who it is for, the limits, and what counts as done.",
+    title: "Turn An Idea Into A Build Prompt",
+    lane: "Build prompts",
+    concept: "A coding prompt needs the thing to make, who it is for, the limits, and what counts as done.",
     badPrompt: "Build my app idea.",
     scenario: "You want Codex or Cursor to create a small clickable prototype.",
     example:
-      "Build a browser-only prototype for people practicing Codex and Cursor requests. Context: use five short lessons, no accounts, and no backend. Return files changed, acceptance checks, and how to run it locally.",
+      "Build a browser-only prototype for people practicing Codex and Cursor prompts. Context: use five short lessons, no accounts, and no backend. Return files changed, acceptance checks, and how to run it locally.",
     nextLabel: "Go to bug reports",
   },
   {
     id: 3,
-    title: "Write A Bug Report A Tool Can Fix",
+    title: "Write A Bug-Fix Prompt",
     lane: "Debugging",
-    concept: "A fix request needs the bug, what should happen, what happens now, and how to prove it is fixed.",
+    concept: "A bug-fix prompt needs the bug, what should happen, what happens now, and how to prove it is fixed.",
     badPrompt: "The page is broken.",
     scenario: "A button in your prototype should open the next lesson, but it stays disabled.",
     example:
@@ -91,18 +91,18 @@ const lessons: Lesson[] = [
     id: 4,
     title: "Ask For A Landing Page That Can Sell",
     lane: "Growth",
-    concept: "A landing page request needs the buyer, the offer, the proof, and the action you want.",
+    concept: "A landing page prompt needs the buyer, the offer, the proof, and the action you want.",
     badPrompt: "Make a landing page.",
     scenario: "You need to see whether strangers want this before building a bigger app.",
     example:
       "Create a landing page for Promptlaiy. Context: target founders who want better results from Codex and Cursor without learning to code. Format: first screen, lesson preview, pricing test, and waitlist form.",
-    nextLabel: "Go to review requests",
+    nextLabel: "Go to review prompts",
   },
   {
     id: 5,
     title: "Review The Work Before You Trust It",
     lane: "Control",
-    concept: "A review request asks for risks, missing tests, and a plain recommendation before you accept changes.",
+    concept: "A review prompt asks for risks, missing tests, and a plain recommendation before you accept changes.",
     badPrompt: "Is this good?",
     scenario: "Codex changed files and you need to inspect the work.",
     example:
@@ -377,8 +377,8 @@ function App() {
       <section className="workspace" id="lessons">
         <aside className="course-rail" aria-label="Lesson path">
           <div className="rail-header">
-            <span className="eyebrow">5-minute request drills</span>
-            <strong>Make clearer asks</strong>
+            <span className="eyebrow">5-minute prompt drills</span>
+            <strong>Better prompting</strong>
           </div>
           <div className="progress-card">
             <div>
@@ -440,7 +440,7 @@ function App() {
           </div>
 
           <div className="bad-prompt">
-            <span>Weak ask</span>
+            <span>Weak prompt</span>
             <p>{activeLesson.badPrompt}</p>
           </div>
 
@@ -450,7 +450,7 @@ function App() {
           </div>
 
           <label className="prompt-editor" htmlFor="prompt-input">
-            <span>Rewrite it for Codex or Cursor</span>
+            <span>Rewrite it as a better prompt</span>
             <textarea
               id="prompt-input"
               value={prompt}
@@ -469,7 +469,7 @@ function App() {
               Example
             </button>
             <button className="primary-button" onClick={submitPrompt} disabled={isLocked || prompt.trim().length < 8}>
-              Check my ask
+              Check prompt
               <ArrowRight size={17} />
             </button>
           </div>
@@ -505,7 +505,7 @@ function App() {
         <aside className="validation-rail" aria-label="Validation dashboard">
           <div className="promise-card">
             <Rocket size={24} />
-            <h2>Learn to give Codex and Cursor work they can actually finish.</h2>
+            <h2>Get better at prompting Codex and Cursor one rewrite at a time.</h2>
             <p>Short drills for founders and operators who want better software help without learning a full coding stack.</p>
           </div>
 
@@ -578,7 +578,7 @@ function App() {
             <BadgeCheck size={22} />
             <h3>More drills</h3>
             <strong>$9/mo</strong>
-            <p>More scenarios, saved progress, and sharper feedback on each rewrite.</p>
+            <p>More prompt scenarios, saved progress, and sharper feedback on each rewrite.</p>
             <button onClick={() => clickBeta("pro_monthly")}>Join the list</button>
           </article>
           <article className="featured-price">

@@ -1,6 +1,6 @@
 # Promptlaiy
 
-Short browser lessons that help founders write better requests for Codex and Cursor.
+Short browser lessons that help founders get better at prompting Codex and Cursor.
 
 ## Local Development
 
