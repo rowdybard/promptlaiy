@@ -2,13 +2,5 @@
   "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "promptlaiy",
   "compatibility_date": "2026-06-17",
-  "pages_build_output_dir": "./dist",
-  "d1_databases": [
-    {
-      "binding": "DB",
-      "database_name": "promptlaiy-waitlist",
-      "database_id": "15bcbeb8-e49b-422d-85ac-4523f3259bfc",
-      "migrations_dir": "migrations"
-    }
-  ]
+  "pages_build_output_dir": "./dist"
 }
