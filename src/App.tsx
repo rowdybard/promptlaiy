@@ -29,7 +29,7 @@ type Lesson = {
   badPrompt: string;
   scenario: string;
   example: string;
-  unlockLabel: string;
+  nextLabel: string;
 };
 
 type SignalKey = "goal" | "context" | "format";
@@ -56,58 +56,58 @@ type StoredState = {
 const lessons: Lesson[] = [
   {
     id: 1,
-    title: "Make Vague Prompts Specific",
-    lane: "Prompt Basics",
-    concept: "Agent-ready tasks include a goal, the situation, and the shape of the answer.",
+    title: "Make A Vague Ask Usable",
+    lane: "The basic move",
+    concept: "A good request says what you want, what the tool should know, and what you want back.",
     badPrompt: "Help me with my business.",
-    scenario: "You are a founder trying to decide what to build first.",
+    scenario: "You run a small coaching business and have one evening to choose the first thing to test.",
     example:
-      "Help me choose the first MVP for my coaching business. Context: I have 20 warm leads, no website, and 2 hours tonight. Return a ranked list with reasons and the first task I should give Codex.",
-    unlockLabel: "Next: Product idea prompts",
+      "Choose the first test for my coaching business. Context: I have 20 warm leads, no website, and two hours tonight. Return a ranked list with reasons and the exact task to give Codex first.",
+    nextLabel: "Go to idea tasks",
   },
   {
     id: 2,
-    title: "Turn Ideas Into Build Tasks",
-    lane: "Ship With Agents",
-    concept: "Agents work better when the task says what to build, who it helps, and what done means.",
+    title: "Turn An Idea Into A Task",
+    lane: "Build requests",
+    concept: "A coding tool needs the thing to make, who it is for, the limits, and what counts as done.",
     badPrompt: "Build my app idea.",
     scenario: "You want Codex or Cursor to create a small clickable prototype.",
     example:
-      "Build a browser-only prototype for non-coders learning AI agents. Context: use five short lessons and no backend. Return files changed, acceptance criteria, and how to run it locally.",
-    unlockLabel: "Next: Bug report prompts",
+      "Build a browser-only prototype for people practicing Codex and Cursor requests. Context: use five short lessons, no accounts, and no backend. Return files changed, acceptance checks, and how to run it locally.",
+    nextLabel: "Go to bug reports",
   },
   {
     id: 3,
-    title: "Write Bug Reports Agents Can Fix",
+    title: "Write A Bug Report A Tool Can Fix",
     lane: "Debugging",
-    concept: "A fix prompt needs the bug, expected behavior, current behavior, and proof you want back.",
+    concept: "A fix request needs the bug, what should happen, what happens now, and how to prove it is fixed.",
     badPrompt: "The page is broken.",
-    scenario: "A button in your prototype does not unlock the next lesson.",
+    scenario: "A button in your prototype should open the next lesson, but it stays disabled.",
     example:
-      "Fix the lesson unlock bug. Context: clicking submit with a passing score should unlock the next lesson, but the button stays disabled after refresh. Return the likely cause, patch, and a manual test checklist.",
-    unlockLabel: "Next: Landing page prompts",
+      "Fix the lesson navigation bug. Context: clicking submit with a passing score should open the next lesson, but the button stays disabled after refresh. Return the likely cause, the patch, and a manual test checklist.",
+    nextLabel: "Go to landing pages",
   },
   {
     id: 4,
-    title: "Ask For Useful Landing Pages",
+    title: "Ask For A Landing Page That Can Sell",
     lane: "Growth",
-    concept: "A landing prompt should include audience, offer, proof, and conversion goal.",
+    concept: "A landing page request needs the buyer, the offer, the proof, and the action you want.",
     badPrompt: "Make a landing page.",
-    scenario: "You need to validate demand before building the full app.",
+    scenario: "You need to see whether strangers want this before building a bigger app.",
     example:
-      "Create a landing page for Promptlaiy. Context: target non-coder founders who want to ship with Codex and Cursor. Format: first screen, practice preview, pricing test, and waitlist CTA.",
-    unlockLabel: "Next: Review prompts",
+      "Create a landing page for Promptlaiy. Context: target founders who want better results from Codex and Cursor without learning to code. Format: first screen, lesson preview, pricing test, and waitlist form.",
+    nextLabel: "Go to review requests",
   },
   {
     id: 5,
-    title: "Review Agent Work Safely",
+    title: "Review The Work Before You Trust It",
     lane: "Control",
-    concept: "Review prompts keep you in control by asking for risks, tests, and a clear summary.",
+    concept: "A review request asks for risks, missing tests, and a plain recommendation before you accept changes.",
     badPrompt: "Is this good?",
     scenario: "Codex changed files and you need to inspect the work.",
     example:
-      "Review the changes like a senior product engineer. Context: this is a frontend-only MVP with localStorage analytics. Return blockers, risky assumptions, missing tests, and a concise ship/no-ship recommendation.",
-    unlockLabel: "Paid beta unlocked",
+      "Review the changes like a senior product engineer. Context: this is a frontend-only test product with localStorage progress and a Cloudflare waitlist. Return blockers, risky assumptions, missing tests, and a clear publish/do-not-publish recommendation.",
+    nextLabel: "See the paid options",
   },
 ];
 
@@ -142,7 +142,7 @@ function scorePrompt(input: string): ScoreResult {
   const wordCount = text.split(/\s+/).filter(Boolean).length;
 
   const goal =
-    /\b(goal|build|create|write|draft|fix|choose|decide|review|analyze|improve|turn|make|ship)\b/.test(text) &&
+    /\b(goal|build|create|write|draft|fix|choose|decide|review|analyze|improve|turn|make|publish)\b/.test(text) &&
     wordCount >= 8;
   const context =
     /\b(context|audience|for|because|current|using|with|target|my|users|customers|repo|prototype|business)\b/.test(
@@ -160,8 +160,8 @@ function scorePrompt(input: string): ScoreResult {
 
   const feedback =
     missing.length === 0
-      ? "Strong. This gives the agent the job, the situation, and the shape of the answer."
-      : `Add ${missing.join(" + ")} so the agent knows what success looks like.`;
+      ? "Good. This names the job, the background, and the answer you want."
+      : `Add ${missing.join(" + ")} so the tool has less to guess.`;
 
   return {
     score,
@@ -182,10 +182,10 @@ function App() {
   const [serverWaitlistCount, setServerWaitlistCount] = useState<number | null>(null);
   const [isJoiningWaitlist, setIsJoiningWaitlist] = useState(false);
 
-  const unlockedLessons = Math.max(1, state.completed.length + 1);
+  const availableLessons = Math.max(1, state.completed.length + 1);
   const completedPercent = Math.round((state.completed.length / lessons.length) * 100);
   const selectedIndex = lessons.findIndex((lesson) => lesson.id === activeLesson.id);
-  const isLocked = activeLesson.id > unlockedLessons;
+  const isLocked = activeLesson.id > availableLessons;
   const hasCompletedAll = state.completed.length === lessons.length;
   const visibleWaitlistCount = serverWaitlistCount ?? state.localWaitlistCount;
 
@@ -197,7 +197,7 @@ function App() {
         current: state.lessonCompletions[1] ?? 0,
         target: 10,
       },
-      { label: "Paid beta clicks", current: state.betaClicks, target: 3 },
+      { label: "Price clicks", current: state.betaClicks, target: 3 },
     ],
     [state, visibleWaitlistCount],
   );
@@ -249,7 +249,7 @@ function App() {
     setActiveLesson(lesson);
     setPrompt("");
     setLastResult(null);
-    if (lesson.id <= unlockedLessons) track("lesson_started", lesson.id);
+    if (lesson.id <= availableLessons) track("lesson_started", lesson.id);
   }
 
   function submitPrompt() {
@@ -330,7 +330,7 @@ function App() {
       setServerWaitlistCount(result.count);
       setEmail("");
       setWaitlistMessage(
-        result.status === "updated" ? "Updated your beta preference." : "Saved. You are on the beta list.",
+        result.status === "updated" ? "Updated your choice." : "You're on the list.",
       );
     } catch {
       const nextState = {
@@ -340,7 +340,7 @@ function App() {
       };
       updateState(nextState);
       setEmail("");
-      setWaitlistMessage("Saved locally for this browser. The live site will store this in Cloudflare.");
+      setWaitlistMessage("Saved in this browser. The live site stores signups in Cloudflare.");
     } finally {
       setIsJoiningWaitlist(false);
     }
@@ -354,7 +354,7 @@ function App() {
       events: [{ name: "paid_beta_clicked", at: new Date().toISOString() }, ...state.events].slice(0, 30),
     });
     recordServerEvent("paid_beta_clicked", undefined, betaInterest);
-    setWaitlistMessage("Nice. Add your email and I will tag your beta interest.");
+    setWaitlistMessage("Good choice. Add your email and I will save it with that option.");
     document.getElementById("waitlist")?.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
@@ -377,13 +377,13 @@ function App() {
       <section className="workspace" id="lessons">
         <aside className="course-rail" aria-label="Lesson path">
           <div className="rail-header">
-            <span className="eyebrow">Daily agent practice</span>
-            <strong>Ship with agents</strong>
+            <span className="eyebrow">5-minute request drills</span>
+            <strong>Make clearer asks</strong>
           </div>
           <div className="progress-card">
             <div>
               <span>{completedPercent}% complete</span>
-              <strong>{state.xp} XP</strong>
+              <strong>{state.xp} points</strong>
             </div>
             <div className="meter" aria-hidden="true">
               <span style={{ width: `${completedPercent}%` }} />
@@ -391,7 +391,7 @@ function App() {
           </div>
           <div className="lesson-list">
             {lessons.map((lesson) => {
-              const locked = lesson.id > unlockedLessons;
+              const locked = lesson.id > availableLessons;
               const completed = state.completed.includes(lesson.id);
               const active = activeLesson.id === lesson.id;
               return (
@@ -400,7 +400,7 @@ function App() {
                   key={lesson.id}
                   onClick={() => selectLesson(lesson)}
                   disabled={locked}
-                  title={locked ? "Complete the previous lesson to unlock" : lesson.title}
+                  title={locked ? "Finish the previous lesson first" : lesson.title}
                 >
                   <span className="lesson-icon">
                     {completed ? <Check size={16} /> : locked ? <Lock size={15} /> : <Play size={15} />}
@@ -440,7 +440,7 @@ function App() {
           </div>
 
           <div className="bad-prompt">
-            <span>Bad prompt</span>
+            <span>Weak ask</span>
             <p>{activeLesson.badPrompt}</p>
           </div>
 
@@ -450,7 +450,7 @@ function App() {
           </div>
 
           <label className="prompt-editor" htmlFor="prompt-input">
-            <span>Your agent-ready version</span>
+            <span>Rewrite it for Codex or Cursor</span>
             <textarea
               id="prompt-input"
               value={prompt}
@@ -459,7 +459,7 @@ function App() {
                 setLastResult(null);
               }}
               disabled={isLocked}
-              placeholder="Add a clear goal, real context, and the output format you want."
+              placeholder="Say the outcome, the context, and the format you want."
             />
           </label>
 
@@ -469,7 +469,7 @@ function App() {
               Example
             </button>
             <button className="primary-button" onClick={submitPrompt} disabled={isLocked || prompt.trim().length < 8}>
-              Check prompt
+              Check my ask
               <ArrowRight size={17} />
             </button>
           </div>
@@ -480,7 +480,7 @@ function App() {
                 {lastResult.score}
               </div>
               <div>
-                <strong>{lastResult.passed ? "Lesson passed" : "Keep tightening it"}</strong>
+                <strong>{lastResult.passed ? "That is usable" : "Still too fuzzy"}</strong>
                 <p>{lastResult.feedback}</p>
                 <div className="signal-row">
                   {(["goal", "context", "format"] as SignalKey[]).map((signal) => (
@@ -496,7 +496,7 @@ function App() {
 
           {lastResult?.passed && (
             <button className="next-lesson-button" onClick={goNext} disabled={selectedIndex === lessons.length - 1}>
-              {activeLesson.unlockLabel}
+              {activeLesson.nextLabel}
               <ArrowRight size={17} />
             </button>
           )}
@@ -505,19 +505,19 @@ function App() {
         <aside className="validation-rail" aria-label="Validation dashboard">
           <div className="promise-card">
             <Rocket size={24} />
-            <h2>Practice directing AI agents until you can ship useful work.</h2>
-            <p>Built for non-coders, founders, operators, and product people learning Codex and Cursor workflows.</p>
+            <h2>Learn to give Codex and Cursor work they can actually finish.</h2>
+            <p>Short drills for founders and operators who want better software help without learning a full coding stack.</p>
           </div>
 
           <div className="stats-grid">
             <div>
               <Gauge size={18} />
-              <span>Score gate</span>
+              <span>Pass mark</span>
               <strong>70+</strong>
             </div>
             <div>
               <Trophy size={18} />
-              <span>Free path</span>
+              <span>Free lessons</span>
               <strong>5 lessons</strong>
             </div>
           </div>
@@ -525,7 +525,7 @@ function App() {
           <div className="targets-card">
             <div className="section-heading">
               <ListChecks size={18} />
-              <strong>Validation targets</strong>
+              <strong>Launch targets</strong>
             </div>
             {validationStats.map((stat) => {
               const progress = Math.min(100, Math.round((stat.current / stat.target) * 100));
@@ -548,10 +548,10 @@ function App() {
           <div className="event-card">
             <div className="section-heading">
               <ShieldCheck size={18} />
-              <strong>Local signals</strong>
+              <strong>Recent activity</strong>
             </div>
             {state.events.length === 0 ? (
-              <p>No signals yet. Start a lesson to create the first one.</p>
+              <p>No activity yet. Start a lesson to create the first entry.</p>
             ) : (
               state.events.slice(0, 5).map((event, index) => (
                 <span key={`${event.name}-${event.at}-${index}`}>
@@ -566,34 +566,34 @@ function App() {
 
       <section className="money-band" id="pricing">
         <div>
-          <span className="eyebrow">Money test</span>
-          <h2>Free lessons first. Paid intent after value.</h2>
+          <span className="eyebrow">Price check</span>
+          <h2>Let people try it before asking for money.</h2>
           <p>
-            The MVP keeps lesson one through five free, then measures whether people want Pro practice or a live
-            founder bootcamp.
+            The first five lessons stay free. After that, the page checks whether people want more drills or a live
+            build session.
           </p>
         </div>
         <div className="pricing-grid">
           <article>
             <BadgeCheck size={22} />
-            <h3>Pro Practice</h3>
+            <h3>More drills</h3>
             <strong>$9/mo</strong>
-            <p>Daily reps, advanced scenarios, saved progress, and deeper prompt feedback.</p>
-            <button onClick={() => clickBeta("pro_monthly")}>Join Pro beta</button>
+            <p>More scenarios, saved progress, and sharper feedback on each rewrite.</p>
+            <button onClick={() => clickBeta("pro_monthly")}>Join the list</button>
           </article>
           <article className="featured-price">
             <Code2 size={22} />
-            <h3>Founder Bootcamp</h3>
+            <h3>Live build session</h3>
             <strong>$149</strong>
-            <p>A 90-minute live session to ship your first AI-agent workflow with Codex or Cursor.</p>
-            <button onClick={() => clickBeta("founder_bootcamp")}>Reserve beta seat</button>
+            <p>A 90-minute session where you turn one real idea into a working Codex or Cursor task.</p>
+            <button onClick={() => clickBeta("founder_bootcamp")}>Save me a seat</button>
           </article>
           <article>
             <CreditCard size={22} />
             <h3>Annual</h3>
             <strong>$59/yr</strong>
-            <p>Lower-friction paid plan for people who want lightweight weekly practice.</p>
-            <button onClick={() => clickBeta("annual")}>Test annual intent</button>
+            <p>A cheaper yearly option for people who want a steady habit without another big subscription.</p>
+            <button onClick={() => clickBeta("annual")}>I would pay yearly</button>
           </article>
         </div>
       </section>
@@ -601,8 +601,8 @@ function App() {
       <section className="waitlist-band" id="waitlist">
         <div>
           <span className="eyebrow">Beta list</span>
-          <h2>{hasCompletedAll ? "You unlocked the beta ask." : "Validate demand before building more."}</h2>
-          <p>Capture early users now, then expand only if the lesson loop proves people come back.</p>
+          <h2>{hasCompletedAll ? "Want the next set of lessons?" : "Join before I build the rest."}</h2>
+          <p>Leave your email if this is close to something you would actually use.</p>
         </div>
         <form className="waitlist-form" onSubmit={joinWaitlist}>
           <label htmlFor="waitlist-email">Email</label>

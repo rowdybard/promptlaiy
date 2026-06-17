@@ -1,6 +1,6 @@
 # Promptlaiy
 
-Duolingo-style practice for non-coders learning to direct AI agents like Codex and Cursor.
+Short browser lessons that help founders write better requests for Codex and Cursor.
 
 ## Local Development
 
