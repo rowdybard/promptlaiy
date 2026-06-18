@@ -1226,3 +1226,327 @@ footer > a:last-child {
     padding: 28px 20px;
   }
 }
+
+/* =====================================================================
+   Polish layer — motion, depth, tactility
+   ===================================================================== */
+
+/* Typography refinement */
+h1,
+h2,
+.section-heading h2,
+.scope-band h2,
+.application-heading h2,
+.price-line strong,
+.form-step > label:not(.check-row),
+.success-state h3,
+.article h1,
+.article h2 {
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.hero-lede,
+.article p,
+.deliverable-list p,
+.faq-list details p {
+  text-wrap: pretty;
+}
+
+/* Ambient depth: a whisper-fine dot grid across the page */
+body {
+  background-color: #f6f3e9;
+  background-image: radial-gradient(circle at 1px 1px, rgba(23, 35, 29, 0.045) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+/* Editorial accent dash on every kicker */
+.eyebrow::before,
+.step-kicker::before {
+  content: "";
+  display: inline-block;
+  width: 20px;
+  height: 2px;
+  margin-right: 9px;
+  background: currentColor;
+  vertical-align: middle;
+  opacity: 0.85;
+}
+
+/* Scroll progress bar */
+.scroll-progress {
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: 3px;
+  z-index: 50;
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  background: linear-gradient(90deg, #2ab673, #a4ef75 70%, #ffda57);
+  box-shadow: 0 0 14px rgba(42, 182, 115, 0.45);
+}
+
+/* Living hero glow */
+.hero {
+  position: relative;
+  isolation: isolate;
+}
+
+.hero::before,
+.hero::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(6px);
+}
+
+.hero::before {
+  width: 540px;
+  height: 540px;
+  top: -120px;
+  right: -120px;
+  background: radial-gradient(circle at 55% 45%, rgba(164, 239, 117, 0.5), transparent 62%);
+  animation: floatBlobA 16s ease-in-out infinite;
+}
+
+.hero::after {
+  width: 460px;
+  height: 460px;
+  bottom: -160px;
+  left: -140px;
+  background: radial-gradient(circle at 50% 50%, rgba(255, 218, 87, 0.42), transparent 64%);
+  animation: floatBlobB 19s ease-in-out infinite;
+}
+
+@keyframes floatBlobA {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-26px, 30px) scale(1.08);
+  }
+}
+
+@keyframes floatBlobB {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(28px, -24px) scale(1.1);
+  }
+}
+
+/* Layered depth shadows on the signature cards */
+.output-preview {
+  box-shadow: 12px 12px 0 #17231d, 0 26px 60px -28px rgba(23, 35, 29, 0.55);
+  transition: box-shadow 0.3s ease, transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1);
+  will-change: transform;
+}
+
+.faq-reads,
+.article-cta {
+  transition: transform 0.2s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.2s ease;
+}
+
+.faq-reads {
+  box-shadow: 6px 6px 0 #17231d, 0 18px 40px -28px rgba(23, 35, 29, 0.5);
+}
+
+.article-cta {
+  box-shadow: 8px 8px 0 #17231d, 0 20px 46px -28px rgba(23, 35, 29, 0.5);
+}
+
+.faq-reads:hover,
+.article-cta:hover {
+  transform: translate(-3px, -3px);
+}
+
+.faq-reads:hover {
+  box-shadow: 9px 9px 0 #17231d, 0 24px 50px -26px rgba(23, 35, 29, 0.55);
+}
+
+.article-cta:hover {
+  box-shadow: 11px 11px 0 #17231d, 0 26px 54px -26px rgba(23, 35, 29, 0.55);
+}
+
+.application-shell,
+.process ol {
+  box-shadow: 10px 10px 0 #17231d, 0 24px 56px -30px rgba(23, 35, 29, 0.5);
+}
+
+/* Tactile buttons */
+.button,
+.nav-cta {
+  transition: transform 0.14s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.14s ease;
+}
+
+.button.primary:hover,
+.nav-cta:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0 #17231d;
+}
+
+.button.primary:active,
+.nav-cta:active {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0 #17231d;
+}
+
+.button.secondary:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0 #17231d;
+}
+
+/* Animated brand mark */
+.brand-mark {
+  transition: transform 0.2s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.2s ease;
+}
+
+.brand:hover .brand-mark {
+  transform: translate(-1px, -1px) rotate(-4deg);
+  box-shadow: 4px 4px 0 #17231d;
+}
+
+/* Sliding underline for text links */
+nav a:not(.nav-cta),
+.text-link {
+  position: relative;
+}
+
+nav a:not(.nav-cta)::after,
+.text-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -4px;
+  height: 2px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  transition: transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+nav a:not(.nav-cta):hover::after,
+.text-link:hover::after {
+  transform: scaleX(1);
+}
+
+nav a:not(.nav-cta):hover,
+.text-link:hover {
+  text-decoration: none;
+}
+
+/* Row hover warmth */
+.deliverable-list article {
+  transition: background 0.2s ease;
+}
+
+.deliverable-list article:hover {
+  background: rgba(164, 239, 117, 0.12);
+}
+
+.process li {
+  transition: background 0.2s ease;
+}
+
+.process li:hover {
+  background: #f3f9ee;
+}
+
+/* FAQ marker comes alive */
+.faq-list summary::after {
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+
+.faq-list summary:hover::after {
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0 #17231d;
+}
+
+.faq-list details[open] summary::after {
+  background: #ffda57;
+}
+
+.faq-list details p {
+  animation: faqReveal 0.32s ease both;
+}
+
+@keyframes faqReveal {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Sheen across the "prototype ready" panel */
+.preview-status {
+  position: relative;
+  overflow: hidden;
+}
+
+.preview-status::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent 32%, rgba(255, 255, 255, 0.55) 50%, transparent 68%);
+  transform: translateX(-130%);
+  animation: sheen 5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes sheen {
+  0%,
+  55% {
+    transform: translateX(-130%);
+  }
+  100% {
+    transform: translateX(130%);
+  }
+}
+
+/* Progress meter shimmer */
+.meter i {
+  background-image: linear-gradient(90deg, #2ab673, #5fd497, #2ab673);
+  background-size: 200% 100%;
+  animation: meterFlow 2.6s linear infinite;
+}
+
+@keyframes meterFlow {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+/* Scroll reveal (progressive enhancement; content stays visible without JS) */
+.js-reveal .reveal {
+  opacity: 0;
+  transform: translateY(22px);
+}
+
+.js-reveal .reveal.in {
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.6s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition-delay: var(--rd, 0ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero::before,
+  .hero::after,
+  .preview-status::after,
+  .meter i {
+    animation: none;
+  }
+  .js-reveal .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}

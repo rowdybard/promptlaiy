@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Promptlaiy Control Room</title>
+    <link rel="stylesheet" href="/admin/admin.css" />
+  </head>
+  <body class="admin">
+    <!-- Login gate -->
+    <div id="login" class="login-screen">
+      <form id="login-form" class="login-card" autocomplete="off">
+        <div class="login-brand"><span class="login-mark">P</span> Promptlaiy</div>
+        <h1>Control Room</h1>
+        <p class="login-sub">Restricted. Enter your admin token to continue.</p>
+        <label for="token">Admin token</label>
+        <input id="token" name="token" type="password" autocomplete="current-password" required />
+        <button type="submit" class="btn primary" id="login-btn">Unlock dashboard</button>
+        <p id="login-error" class="login-error" hidden></p>
+      </form>
+    </div>
+
+    <!-- Dashboard -->
+    <div id="dashboard" hidden>
+      <header class="admin-top">
+        <div class="admin-brand"><span class="login-mark">P</span> Control Room</div>
+        <div class="admin-controls">
+          <div class="seg" id="range-seg" role="tablist" aria-label="Time range">
+            <button class="seg-btn" data-range="1d">24h</button>
+            <button class="seg-btn active" data-range="7d">7d</button>
+            <button class="seg-btn" data-range="30d">30d</button>
+            <button class="seg-btn" data-range="90d">90d</button>
+          </div>
+          <button class="btn ghost" id="refresh-btn" title="Refresh">Refresh</button>
+          <span class="live-dot" id="live-dot" title="Auto-refresh on"></span>
+          <button class="btn ghost" id="logout-btn">Lock</button>
+        </div>
+      </header>
+
+      <main class="admin-main">
+        <section class="kpis" id="kpis" aria-label="Key metrics"></section>
+
+        <section class="panel chart-panel">
+          <div class="panel-head">
+            <h2>Traffic over time</h2>
+            <div class="legend">
+              <span class="lg lg-views">Views</span>
+              <span class="lg lg-sessions">Sessions</span>
+              <span class="lg lg-clicks">Clicks</span>
+            </div>
+          </div>
+          <div id="chart" class="chart"></div>
+        </section>
+
+        <section class="grid-2">
+          <div class="panel">
+            <div class="panel-head"><h2>Top pages</h2></div>
+            <div class="barlist" id="top-paths"></div>
+          </div>
+          <div class="panel">
+            <div class="panel-head"><h2>Referrers</h2></div>
+            <div class="barlist" id="top-referrers"></div>
+          </div>
+        </section>
+
+        <section class="grid-3">
+          <div class="panel">
+            <div class="panel-head"><h2>Devices</h2></div>
+            <div id="devices" class="donut-wrap"></div>
+          </div>
+          <div class="panel">
+            <div class="panel-head"><h2>Top clicks</h2></div>
+            <div class="barlist" id="top-clicks"></div>
+          </div>
+          <div class="panel">
+            <div class="panel-head"><h2>Countries</h2></div>
+            <div class="barlist" id="countries"></div>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-head">
+            <h2>Replies <span id="replies-count" class="muted-count"></span></h2>
+          </div>
+          <div class="filters" id="reply-filters">
+            <input id="search" class="filter-input" type="search" placeholder="Search name, email, idea..." />
+            <select id="status-filter" class="filter-input">
+              <option value="">All statuses</option>
+              <option value="new">New</option>
+              <option value="contacted">Contacted</option>
+              <option value="won">Won</option>
+              <option value="lost">Lost</option>
+              <option value="archived">Archived</option>
+            </select>
+            <select id="package-filter" class="filter-input">
+              <option value="">All packages</option>
+              <option value="prototype">Prototype ($499)</option>
+              <option value="domain">Domain launch ($749)</option>
+              <option value="unsure">Unsure</option>
+            </select>
+            <select id="hosting-filter" class="filter-input">
+              <option value="">Hosting: any</option>
+              <option value="yes">Hosting: interested</option>
+              <option value="no">Hosting: no</option>
+            </select>
+          </div>
+          <div id="replies" class="replies"></div>
+          <div class="pager">
+            <button class="btn ghost" id="prev-page">Prev</button>
+            <span id="page-info" class="muted-count"></span>
+            <button class="btn ghost" id="next-page">Next</button>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="/admin/admin.js" defer></script>
+  </body>
+</html>
