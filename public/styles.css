@@ -14,6 +14,19 @@ html {
   scroll-behavior: smooth;
 }
 
+#deliverables,
+#pricing,
+#faq,
+#apply {
+  scroll-margin-top: 90px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
 body {
   min-width: 320px;
   margin: 0;
@@ -333,6 +346,7 @@ textarea:focus-visible {
 .deliverables,
 .process,
 .pricing,
+.faq,
 .application {
   padding: 96px 0;
 }
@@ -530,6 +544,196 @@ textarea:focus-visible {
 
 .price-addons strong {
   font-size: 20px;
+}
+
+.faq {
+  border-top: 1px solid rgba(23, 35, 29, 0.14);
+}
+
+.faq-list {
+  display: grid;
+  border-top: 1px solid rgba(23, 35, 29, 0.18);
+}
+
+.faq-list details {
+  border-bottom: 1px solid rgba(23, 35, 29, 0.18);
+}
+
+.faq-list summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 24px 0;
+  font-size: 21px;
+  font-weight: 900;
+  line-height: 1.2;
+  list-style: none;
+  cursor: pointer;
+}
+
+.faq-list summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-list summary::after {
+  content: "+";
+  display: grid;
+  flex: 0 0 auto;
+  width: 30px;
+  height: 30px;
+  place-items: center;
+  border: 2px solid #17231d;
+  border-radius: 8px;
+  background: #a4ef75;
+  box-shadow: 2px 2px 0 #17231d;
+  font-size: 20px;
+  line-height: 1;
+}
+
+.faq-list details[open] summary::after {
+  content: "\2212";
+}
+
+.faq-list details p {
+  max-width: 820px;
+  margin: 0;
+  padding: 0 0 24px;
+  color: #4f5f56;
+  font-size: 17px;
+  line-height: 1.55;
+  font-weight: 650;
+}
+
+.faq-reads {
+  margin-top: 40px;
+  padding: 28px 30px;
+  border: 1px solid rgba(23, 35, 29, 0.18);
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 6px 6px 0 #17231d;
+}
+
+.faq-reads ul {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding-left: 20px;
+  font-weight: 800;
+}
+
+.faq-reads a {
+  text-underline-offset: 4px;
+}
+
+.faq-reads a:hover {
+  text-decoration: underline;
+}
+
+.article {
+  width: min(760px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 72px 0 64px;
+}
+
+.article .eyebrow {
+  margin-bottom: 16px;
+}
+
+.article h1 {
+  font-size: 52px;
+  line-height: 1.02;
+  margin-bottom: 20px;
+}
+
+.article .article-lede {
+  margin-bottom: 16px;
+  color: #425149;
+  font-size: 21px;
+  line-height: 1.5;
+  font-weight: 700;
+}
+
+.article .article-meta {
+  margin-bottom: 40px;
+  color: #6b776f;
+  font-size: 13px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.article h2 {
+  margin: 44px 0 14px;
+  font-size: 32px;
+  line-height: 1.1;
+}
+
+.article h3 {
+  margin: 28px 0 10px;
+  font-size: 22px;
+}
+
+.article p,
+.article li {
+  color: #313f37;
+  font-size: 18px;
+  line-height: 1.6;
+  font-weight: 600;
+}
+
+.article p {
+  margin: 0 0 18px;
+}
+
+.article ul,
+.article ol {
+  margin: 0 0 22px;
+  padding-left: 24px;
+  display: grid;
+  gap: 10px;
+}
+
+.article a {
+  color: #1f5f44;
+  font-weight: 800;
+  text-underline-offset: 3px;
+}
+
+.article a:hover {
+  text-decoration: underline;
+}
+
+.article blockquote {
+  margin: 24px 0;
+  padding: 18px 22px;
+  border-left: 4px solid #2ab673;
+  background: #edf4e9;
+  font-weight: 700;
+}
+
+.article-cta {
+  margin-top: 48px;
+  padding: 32px;
+  border: 1px solid #17231d;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 8px 8px 0 #17231d;
+}
+
+.article-cta h2 {
+  margin: 0 0 10px;
+  font-size: 28px;
+}
+
+.article-cta p {
+  margin-bottom: 20px;
+}
+
+.article-nav {
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(23, 35, 29, 0.18);
+  font-weight: 800;
 }
 
 .application {

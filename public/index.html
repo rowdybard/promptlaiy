@@ -3,39 +3,95 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Promptlaiy - Clickable Prototype and Blunt Evaluation</title>
+    <title>Validate Your App Idea in 7 Days | Clickable Prototype - Promptlaiy</title>
     <meta
       name="description"
-      content="Turn one software idea into a clickable prototype, blunt evaluation, and practical test plan in seven days."
+      content="Turn one software idea into a clickable prototype, blunt evaluation, and practical test plan in 7 days for a flat $499. Source files included, no equity, no retainer."
     />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <!-- SITE_URL: swap promptlaiy.pages.dev for your custom domain everywhere it appears once DNS is live -->
     <link rel="canonical" href="https://promptlaiy.pages.dev/" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Promptlaiy - Your idea, made clickable in 7 days" />
+    <meta property="og:title" content="Validate your app idea in 7 days with a clickable prototype" />
     <meta
       property="og:description"
-      content="One focused prototype, one blunt evaluation, source ownership, and a live preview you can show customers."
+      content="One focused prototype, one blunt evaluation, source ownership, and a live preview you can show customers. Flat $499."
     />
     <meta property="og:url" content="https://promptlaiy.pages.dev/" />
     <meta property="og:site_name" content="Promptlaiy" />
-    <meta name="twitter:card" content="summary" />
+    <meta property="og:image" content="https://promptlaiy.pages.dev/og-image.svg" />
+    <meta property="og:image:alt" content="Promptlaiy - your software idea, made clickable in 7 days for a flat $499." />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Validate your app idea in 7 days with a clickable prototype" />
+    <meta name="twitter:description" content="One focused prototype, one blunt evaluation, source ownership, and a live preview. Flat $499." />
+    <meta name="twitter:image" content="https://promptlaiy.pages.dev/og-image.svg" />
     <meta name="theme-color" content="#f6f3e9" />
     <link rel="stylesheet" href="/styles.css" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "Service",
-        "name": "Promptlaiy Prototype and Evaluation",
-        "provider": {
-          "@type": "Organization",
-          "name": "Promptlaiy",
-          "url": "https://promptlaiy.pages.dev/"
-        },
-        "description": "A seven-day service that turns a software idea into a clickable prototype, evaluation, test plan, source package, and temporary live preview.",
-        "offers": {
-          "@type": "Offer",
-          "price": "499",
-          "priceCurrency": "USD"
-        }
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://promptlaiy.pages.dev/#org",
+            "name": "Promptlaiy",
+            "url": "https://promptlaiy.pages.dev/",
+            "logo": "https://promptlaiy.pages.dev/og-image.svg",
+            "description": "A focused prototype and evaluation service that turns one software idea into a clickable prototype in seven days."
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://promptlaiy.pages.dev/#website",
+            "url": "https://promptlaiy.pages.dev/",
+            "name": "Promptlaiy",
+            "publisher": { "@id": "https://promptlaiy.pages.dev/#org" }
+          },
+          {
+            "@type": "Service",
+            "name": "Promptlaiy Prototype and Evaluation",
+            "serviceType": "Software prototype and idea validation",
+            "provider": { "@id": "https://promptlaiy.pages.dev/#org" },
+            "description": "A seven-day service that turns a software idea into a clickable prototype, evaluation, test plan, source package, and temporary live preview.",
+            "offers": {
+              "@type": "Offer",
+              "price": "499",
+              "priceCurrency": "USD",
+              "availability": "https://schema.org/InStock"
+            }
+          },
+          {
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "How long does a prototype take?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Seven days from an approved brief. Day 0 you answer the brief, day 1 we lock the workflow, days 2-6 we build and pressure-test, and day 7 you get the clickable link and source files." }
+              },
+              {
+                "@type": "Question",
+                "name": "What does the $499 include?",
+                "acceptedAnswer": { "@type": "Answer", "text": "One focused clickable web workflow, a blunt evaluation and test plan, one revision, the source ZIP with setup instructions, and a Cloudflare preview hosted for 60 days." }
+              },
+              {
+                "@type": "Question",
+                "name": "Do I own the code?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Yes. You receive the full source ZIP and setup instructions. There is no equity, lock-in, or mandatory retainer." }
+              },
+              {
+                "@type": "Question",
+                "name": "Is this a production-ready app?",
+                "acceptedAnswer": { "@type": "Answer", "text": "No. It is a clickable prototype built to test whether the core workflow is worth a real build. It excludes production authentication, payments, sensitive customer data, and app-store releases." }
+              },
+              {
+                "@type": "Question",
+                "name": "What happens after the 60-day preview?",
+                "acceptedAnswer": { "@type": "Answer", "text": "You can launch on your own domain for a one-time $250, and optionally keep managed hosting for $49/month with deployment management, DNS upkeep, and limited small changes. Cancel any time." }
+              }
+            ]
+          }
+        ]
       }
     </script>
   </head>
@@ -48,6 +104,7 @@
       <nav aria-label="Primary navigation">
         <a href="#deliverables">What you get</a>
         <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
         <a class="nav-cta" href="#apply">Apply for a build</a>
       </nav>
     </header>
@@ -204,6 +261,55 @@
         </div>
       </section>
 
+      <section class="faq band" id="faq">
+        <div class="section-heading">
+          <p class="eyebrow">Questions</p>
+          <h2>Straight answers before you apply.</h2>
+        </div>
+        <div class="faq-list">
+          <details>
+            <summary>How long does a prototype take?</summary>
+            <p>
+              Seven days from an approved brief. Day 0 you answer the brief, day 1 we lock the workflow, days 2-6 we
+              build and pressure-test, and day 7 you get the clickable link and source files.
+            </p>
+          </details>
+          <details>
+            <summary>What does the $499 include?</summary>
+            <p>
+              One focused clickable web workflow, a blunt evaluation and test plan, one revision, the source ZIP with
+              setup instructions, and a Cloudflare preview hosted for 60 days.
+            </p>
+          </details>
+          <details>
+            <summary>Do I own the code?</summary>
+            <p>Yes. You receive the full source ZIP and setup instructions. No equity, lock-in, or mandatory retainer.</p>
+          </details>
+          <details>
+            <summary>Is this a production-ready app?</summary>
+            <p>
+              No. It is a clickable prototype built to test whether the core workflow is worth a real build. It excludes
+              production authentication, payments, sensitive customer data, and app-store releases.
+            </p>
+          </details>
+          <details>
+            <summary>What happens after the 60-day preview?</summary>
+            <p>
+              You can launch on your own domain for a one-time $250, and optionally keep managed hosting for $49/month
+              with deployment management, DNS upkeep, and limited small changes. Cancel any time.
+            </p>
+          </details>
+        </div>
+        <div class="faq-reads">
+          <p class="eyebrow">Keep reading</p>
+          <ul>
+            <li><a href="/validate-app-idea/">How to validate a software idea before you build it</a></li>
+            <li><a href="/mvp-prototype-cost/">What an MVP prototype should cost in 2026</a></li>
+            <li><a href="/clickable-prototype-vs-mockup/">Clickable prototype vs. mockup: which proves demand?</a></li>
+          </ul>
+        </div>
+      </section>
+
       <section class="application band" id="apply">
         <div class="application-heading">
           <p class="eyebrow">Project application</p>
@@ -215,9 +321,11 @@
           <aside aria-label="Application progress">
             <div class="progress-copy">
               <span>Brief progress</span>
-              <strong id="progress-label">1 of 7</strong>
+              <strong id="progress-label" aria-live="polite">1 of 7</strong>
             </div>
-            <div class="meter" aria-hidden="true"><i id="progress-meter"></i></div>
+            <div class="meter" role="progressbar" aria-label="Project brief progress" aria-valuemin="1" aria-valuemax="7" aria-valuenow="1">
+              <i id="progress-meter"></i>
+            </div>
             <ol id="step-list">
               <li class="active">The idea</li>
               <li>The audience</li>
@@ -306,7 +414,10 @@
               <button class="button primary" id="next-button" type="button">Next question</button>
               <button class="button primary" id="submit-button" type="submit" hidden>Send project brief</button>
             </div>
-            <p class="form-note">Your draft stays in this browser until you submit or clear it.</p>
+            <p class="form-note">
+              Your draft stays in this browser until you submit or clear it. By sending, you agree we may contact you
+              about this project.
+            </p>
           </form>
 
           <section class="success-state" id="success-state" hidden tabindex="-1">

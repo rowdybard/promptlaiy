@@ -3,5 +3,21 @@
   <url>
     <loc>https://promptlaiy.pages.dev/</loc>
     <lastmod>2026-06-18</lastmod>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://promptlaiy.pages.dev/validate-app-idea/</loc>
+    <lastmod>2026-06-18</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://promptlaiy.pages.dev/mvp-prototype-cost/</loc>
+    <lastmod>2026-06-18</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://promptlaiy.pages.dev/clickable-prototype-vs-mockup/</loc>
+    <lastmod>2026-06-18</lastmod>
+    <priority>0.8</priority>
   </url>
 </urlset>

@@ -10,7 +10,9 @@ const submitButton = document.querySelector("#submit-button");
 const errorBox = document.querySelector("#form-error");
 const successState = document.querySelector("#success-state");
 const newBriefButton = document.querySelector("#new-brief-button");
+const progressBar = document.querySelector(".meter");
 let currentStep = 0;
+let idempotencyKey = crypto.randomUUID();
 
 function loadDraft() {
   try {
@@ -21,14 +23,22 @@ function loadDraft() {
 }
 
 function saveDraft() {
-  const data = Object.fromEntries(new FormData(form).entries());
-  data.hostingInterest = document.querySelector("#hostingInterest").checked;
-  delete data.company;
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  try {
+    const data = Object.fromEntries(new FormData(form).entries());
+    data.hostingInterest = document.querySelector("#hostingInterest").checked;
+    data.idempotencyKey = idempotencyKey;
+    delete data.company;
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  } catch {
+    // The form still works when browser storage is blocked.
+  }
 }
 
 function restoreDraft() {
   const draft = loadDraft();
+  if (/^[a-zA-Z0-9-]{16,64}$/.test(draft.idempotencyKey || "")) {
+    idempotencyKey = draft.idempotencyKey;
+  }
   Object.entries(draft).forEach(([name, value]) => {
     const field = form.elements.namedItem(name);
     if (!field) return;
@@ -45,6 +55,59 @@ function showError(message) {
 function clearError() {
   errorBox.textContent = "";
   errorBox.hidden = true;
+}
+
+async function relayOwnerNotification(data, result) {
+  if (!result.requestId || !result.notificationToken) return;
+
+  const packageLabels = {
+    prototype: "$499 - Prototype + evaluation",
+    domain: "$749 - Prototype + domain launch",
+    unsure: "Not sure yet",
+  };
+  const handoff = new URL("/api/notify", window.location.origin);
+  handoff.searchParams.set("requestId", result.requestId);
+  handoff.searchParams.set("token", result.notificationToken);
+
+  let success = false;
+  let message = "The notification relay could not be reached.";
+  try {
+    const response = await fetch(handoff, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        _subject: `New Promptlaiy project brief from ${data.name}`,
+        _template: "table",
+        _captcha: "false",
+        _replyto: data.email,
+        "Request ID": result.requestId,
+        Name: data.name,
+        Email: data.email,
+        Package: packageLabels[data.package] || packageLabels.unsure,
+        "Hosting interest": data.hostingInterest ? "Yes" : "No",
+        Idea: data.idea,
+        Audience: data.audience,
+        Problem: data.problem,
+        "Current alternative": data.alternative,
+        "Why now": data.urgency,
+        "Smallest useful version": data.smallestVersion,
+      }),
+    });
+    const relayResult = await response.json().catch(() => ({}));
+    success = response.ok && relayResult.success !== false && relayResult.success !== "false";
+    message = String(relayResult.message || (success ? "Notification submitted." : "Notification relay failed."));
+  } catch (error) {
+    message = error instanceof Error ? error.message : message;
+  }
+
+  await fetch(handoff, {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ success, message }),
+  }).catch(() => {});
 }
 
 function activeFields() {
@@ -72,6 +135,7 @@ function renderStep() {
   });
   progressLabel.textContent = `${currentStep + 1} of ${steps.length}`;
   progressMeter.style.width = `${((currentStep + 1) / steps.length) * 100}%`;
+  progressBar.setAttribute("aria-valuenow", String(currentStep + 1));
   backButton.hidden = currentStep === 0;
   nextButton.hidden = currentStep === steps.length - 1;
   submitButton.hidden = currentStep !== steps.length - 1;
@@ -106,6 +170,7 @@ form.addEventListener("submit", async (event) => {
 
   const data = Object.fromEntries(new FormData(form).entries());
   data.hostingInterest = document.querySelector("#hostingInterest").checked;
+  data.idempotencyKey = idempotencyKey;
 
   try {
     const response = await fetch("/api/apply", {
@@ -113,7 +178,7 @@ form.addEventListener("submit", async (event) => {
       headers: { "content-type": "application/json" },
       body: JSON.stringify(data),
     });
-    const result = await response.json();
+    const result = await response.json().catch(() => ({ ok: false }));
     if (!response.ok || !result.ok) throw new Error(result.error || "Could not send your brief.");
 
     localStorage.removeItem(STORAGE_KEY);
@@ -121,6 +186,7 @@ form.addEventListener("submit", async (event) => {
     form.previousElementSibling.hidden = true;
     successState.hidden = false;
     successState.focus();
+    relayOwnerNotification(data, result).catch(() => {});
   } catch (error) {
     showError(error.message || "Could not send your brief. Please try again.");
   } finally {
@@ -131,6 +197,8 @@ form.addEventListener("submit", async (event) => {
 
 newBriefButton.addEventListener("click", () => {
   form.reset();
+  localStorage.removeItem(STORAGE_KEY);
+  idempotencyKey = crypto.randomUUID();
   currentStep = 0;
   successState.hidden = true;
   form.hidden = false;

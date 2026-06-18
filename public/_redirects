@@ -2,7 +2,6 @@
 /learn/ / 301
 /agent-ide / 301
 /agent-ide/ / 301
-/agent-ide/* / 301
 /agent-ide-vs-ai-code-assistant / 301
 /agent-ide-vs-ai-code-assistant/ / 301
 /prompting-coding-agents / 301
@@ -19,4 +18,5 @@
 /sitemap/ / 301
 /admin / 301
 /admin/ / 301
+/agent-ide/* / 301
 /admin/* / 301
