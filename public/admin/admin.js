@@ -179,6 +179,8 @@ function renderKpis(t, prev) {
     ],
   ];
   const wrap = $("#kpis");
+  const entering = !wrap.dataset.rendered;
+  wrap.classList.toggle("is-entering", entering);
   wrap.innerHTML = "";
   cards.forEach(([label, value, prevVal, raw]) => {
     const card = el("div", "kpi");
@@ -188,6 +190,10 @@ function renderKpis(t, prev) {
     else card.appendChild(el("div", "k-delta flat", "conversion"));
     wrap.appendChild(card);
   });
+  if (entering) {
+    wrap.dataset.rendered = "true";
+    setTimeout(() => wrap.classList.remove("is-entering"), 700);
+  }
 }
 
 /* ---------- Chart ---------- */
@@ -278,8 +284,14 @@ function renderChart(series) {
   });
 
   const chart = $("#chart");
+  const entering = !chart.dataset.rendered;
+  chart.classList.toggle("is-entering", entering);
   chart.innerHTML = "";
   chart.appendChild(svg);
+  if (entering) {
+    chart.dataset.rendered = "true";
+    setTimeout(() => chart.classList.remove("is-entering"), 1100);
+  }
 }
 
 /* ---------- Bar lists ---------- */

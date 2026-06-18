@@ -13,6 +13,8 @@
     var max = doc.scrollHeight - doc.clientHeight;
     var pct = max > 0 ? (doc.scrollTop || window.scrollY) / max : 0;
     bar.style.transform = "scaleX(" + Math.min(1, Math.max(0, pct)) + ")";
+    var topbar = document.querySelector(".topbar");
+    if (topbar) topbar.classList.toggle("is-scrolled", (doc.scrollTop || window.scrollY) > 18);
     ticking = false;
   }
   window.addEventListener(
@@ -86,6 +88,17 @@
     });
   }
 
+  function revealVisible() {
+    nodes.forEach(function (node) {
+      if (node.classList.contains("in")) return;
+      var rect = node.getBoundingClientRect();
+      if (rect.top < window.innerHeight * 0.94 && rect.bottom > 0) node.classList.add("in");
+    });
+  }
+  window.addEventListener("scroll", revealVisible, { passive: true });
+  window.addEventListener("resize", revealVisible);
+  setTimeout(revealVisible, 500);
+
   /* ---- Pointer tilt on the delivery preview ---- */
   var preview = document.querySelector(".output-preview");
   if (preview && window.matchMedia("(pointer: fine)").matches) {
@@ -104,6 +117,25 @@
     preview.addEventListener("pointerleave", function () {
       if (frame) cancelAnimationFrame(frame);
       preview.style.transform = "";
+    });
+  }
+
+  var hero = document.querySelector(".hero");
+  if (hero && window.matchMedia("(pointer: fine)").matches) {
+    hero.addEventListener("pointermove", function (event) {
+      var rect = hero.getBoundingClientRect();
+      var x = (event.clientX - rect.left) / rect.width - 0.5;
+      var y = (event.clientY - rect.top) / rect.height - 0.5;
+      hero.style.setProperty("--hero-pan-x", x * 18 + "px");
+      hero.style.setProperty("--hero-pan-y", y * 12 + "px");
+      hero.style.setProperty("--hero-pan-back-x", x * -12 + "px");
+      hero.style.setProperty("--hero-pan-back-y", y * -8 + "px");
+    });
+    hero.addEventListener("pointerleave", function () {
+      hero.style.setProperty("--hero-pan-x", "0px");
+      hero.style.setProperty("--hero-pan-y", "0px");
+      hero.style.setProperty("--hero-pan-back-x", "0px");
+      hero.style.setProperty("--hero-pan-back-y", "0px");
     });
   }
 })();
