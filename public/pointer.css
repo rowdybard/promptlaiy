@@ -112,22 +112,25 @@ body.admin {
 .chrome-glint {
   position: absolute;
   z-index: 6;
-  top: -70%;
-  bottom: -70%;
+  top: 0;
   left: 0;
-  width: 18%;
-  background: linear-gradient(105deg, transparent 0%, rgba(255, 255, 255, 0.06) 30%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0.08) 70%, transparent 100%);
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 42% 38%, rgba(255, 255, 255, 0.7) 0 2px, rgba(255, 255, 255, 0.28) 7px, rgba(255, 255, 255, 0.1) 24px, transparent 42px);
   mix-blend-mode: soft-light;
   opacity: var(--glint-opacity, 0);
-  transform: translate3d(var(--glint-x, -180%), 0, 0) rotate(12deg);
+  transform: translate3d(var(--light-x, -100px), var(--light-y, -100px), 0) translate(-50%, -50%);
   transition: opacity 180ms ease;
   pointer-events: none;
   will-change: transform;
 }
 
 body.admin .chrome-glint {
+  width: 72px;
+  height: 72px;
   mix-blend-mode: screen;
-  background: linear-gradient(105deg, transparent 0%, rgba(78, 168, 255, 0.04) 28%, rgba(255, 255, 255, 0.17) 50%, rgba(56, 232, 176, 0.05) 72%, transparent 100%);
+  background: radial-gradient(circle at 42% 38%, rgba(255, 255, 255, 0.3) 0 2px, rgba(78, 168, 255, 0.13) 8px, rgba(56, 232, 176, 0.05) 22px, transparent 36px);
 }
 
 @media (max-width: 700px), (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) {

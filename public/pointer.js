@@ -108,8 +108,8 @@
     node.appendChild(glint);
     node.addEventListener("pointermove", function (event) {
       var rect = node.getBoundingClientRect();
-      var x = (event.clientX - rect.left) / rect.width;
-      node.style.setProperty("--glint-x", x * 600 - 120 + "%");
+      node.style.setProperty("--light-x", event.clientX - rect.left + "px");
+      node.style.setProperty("--light-y", event.clientY - rect.top + "px");
       node.style.setProperty("--glint-opacity", "1");
     });
     node.addEventListener("pointerleave", function () {
