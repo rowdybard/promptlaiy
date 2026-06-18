@@ -12,6 +12,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: clip;
 }
 
 #deliverables,
@@ -30,6 +31,7 @@ html {
 body {
   min-width: 320px;
   margin: 0;
+  overflow-x: clip;
   background: #f6f3e9;
 }
 

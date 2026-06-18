@@ -14,6 +14,10 @@
   font-family: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 
+[hidden] {
+  display: none !important;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -617,6 +621,15 @@ button {
   .admin-top {
     flex-direction: column;
     align-items: stretch;
+  }
+  .admin-controls {
+    flex-wrap: wrap;
+  }
+  .admin-controls .seg {
+    flex: 1 1 100%;
+  }
+  .admin-controls .seg-btn {
+    flex: 1;
   }
   .admin-main {
     padding: 16px;

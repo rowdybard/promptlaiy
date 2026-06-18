@@ -57,7 +57,7 @@
     function (event) {
       var el = event.target.closest ? event.target.closest("a, button, [data-track]") : null;
       if (!el) return;
-      if (el.type === "submit" && el.id === "next-button") return;
+      if (el.id === "next-button" || el.id === "back-button") return;
       send({ type: "click", target: labelFor(el) });
     },
     true
