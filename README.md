@@ -1,66 +1,66 @@
 # Promptlaiy
 
-Promptlaiy is an idea verdict in 5 minutes platform.
+Promptlaiy is a manual prototype and evaluation service for early software ideas.
 
-The V1 product is intentionally small: dump a messy idea, answer five forced questions, get a structured Idea Brief, then receive one verdict:
+The public offer is intentionally narrow:
 
-- `BUILD`
-- `SHRINK`
-- `PIVOT`
-- `KILL`
+- One clickable web workflow
+- A blunt evaluation and practical test plan
+- One revision
+- Source ZIP and setup instructions
+- A Cloudflare preview hosted for 60 days
+- Optional domain launch and managed hosting
 
-## Product Direction
+The base project price shown on the site is `$499`.
 
-Promptlaiy is not a prompt helper or course product. It is a fast idea-intake and verdict tool for founders, operators, and builders who need a blunt first-pass read before spending time on a build.
+## Architecture
 
-The current app includes:
+The site has no frontend framework, build step, or runtime package dependencies.
 
-- Messy idea brain dump
-- Five-question intake flow
-- Local session persistence in `localStorage`
-- Mock AI verdict scoring
-- Idea Brief output
-- Locked monetization skeleton for future continuation assets
-- Cloudflare Pages Function at `/api/verdict` shaped for a later OpenAI integration
+- `public/` contains the static HTML, CSS, JavaScript, headers, redirects, and crawl files.
+- `functions/api/apply.js` accepts project applications.
+- `migrations/` contains the D1 schema for prototype requests.
+- `wrangler.jsonc` configures Cloudflare Pages and the existing D1 database.
 
-Out of scope for V1:
+The application draft is saved in `localStorage`. Submitted applications are stored in the `prototype_requests` D1 table.
 
-- Courses
-- Prompt training
-- Dashboards
-- Teams
-- Marketplace
-- Payments
+## Local Development
 
-## Setup
+Wrangler 4 is required. Run Pages locally with:
 
 ```bash
-npm install
-cp .env.example .env
-npm run dev
+npx wrangler d1 migrations apply promptlaiy-waitlist --local
+npx wrangler pages dev public
 ```
 
-Check and build locally:
-
-```bash
-npm run typecheck
-npm run build
-npm run preview
-```
-
-## Environment
-
-```bash
-OPENAI_API_KEY=
-```
-
-The key is not used yet. The current `/api/verdict` route returns a mock verdict, but the API response shape is ready for an OpenAI-backed implementation.
+No `npm install` or frontend build is required.
 
 ## Deploy
 
-This repo is configured for Cloudflare Pages.
+Apply new migrations first:
 
 ```bash
-npm run build
-npx wrangler pages deploy .\dist --project-name promptlaiy --branch main --commit-dirty=true --skip-caching
+npx wrangler d1 migrations apply promptlaiy-waitlist --remote
 ```
+
+Deploy the static site and Pages Function:
+
+```bash
+npx wrangler pages deploy .\public --project-name promptlaiy --branch main --commit-dirty=true --skip-caching
+```
+
+## Review Applications
+
+```bash
+npx wrangler d1 execute promptlaiy-waitlist --remote --command "SELECT id, name, email, package_choice, hosting_interest, status, created_at FROM prototype_requests ORDER BY created_at DESC"
+```
+
+Update an application after review:
+
+```bash
+npx wrangler d1 execute promptlaiy-waitlist --remote --command "UPDATE prototype_requests SET status = 'contacted' WHERE id = 'REQUEST_ID'"
+```
+
+## Product Boundary
+
+Promptlaiy delivers testable prototypes, not production systems. Authentication, payments, sensitive customer data, app-store releases, and open-ended revisions are outside the base offer.
