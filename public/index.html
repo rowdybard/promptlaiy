@@ -29,7 +29,6 @@
     <meta name="twitter:image" content="https://promptlaiy.pages.dev/og-image.svg" />
     <meta name="theme-color" content="#f6f3e9" />
     <link rel="stylesheet" href="/styles.css" />
-    <link rel="stylesheet" href="/pointer.css" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -103,6 +102,7 @@
         <span>Promptlaiy</span>
       </a>
       <nav aria-label="Primary navigation">
+        <a href="/sample-delivery/">See sample delivery</a>
         <a href="#deliverables">What you get</a>
         <a href="#pricing">Pricing</a>
         <a href="#faq">FAQ</a>
@@ -118,10 +118,11 @@
           <p class="hero-lede">
             We build the smallest useful version of your idea, then try to break its assumptions before you waste
             months on it.
+            <strong class="hero-proof">See exactly what a finished delivery looks like before you apply.</strong>
           </p>
           <div class="hero-actions">
-            <a class="button primary" href="#apply">Apply for a build</a>
-            <a class="text-link" href="#deliverables">See the deliverables</a>
+            <a class="button primary" href="/sample-delivery/">View sample delivery</a>
+            <a class="button secondary" href="#apply">Apply for a build</a>
           </div>
           <ul class="hero-facts" aria-label="Offer summary">
             <li><strong>$499</strong> flat</li>
@@ -157,7 +158,7 @@
           <div class="preview-footer">
             <span>Clickable preview</span>
             <span>Evaluation</span>
-            <span>Source ZIP</span>
+            <a href="/sample-delivery/">Inspect delivery →</a>
           </div>
         </figure>
       </section>
@@ -165,6 +166,21 @@
       <section class="promise-strip" aria-label="Promptlaiy promise">
         <p>We do not hand you an AI score.</p>
         <strong>We hand you something real enough to test.</strong>
+      </section>
+
+      <section class="sample-proof band" aria-labelledby="sample-proof-title">
+        <div>
+          <p class="eyebrow">See the work first</p>
+          <h2 id="sample-proof-title">One fictional idea. One real finished package.</h2>
+          <p>
+            Leadkeeper shows the messy starting idea, working prototype, blunt evaluation, three validation tests,
+            and the exact boundary between what was included and what was left out.
+          </p>
+        </div>
+        <div class="sample-proof-actions">
+          <a class="button primary" href="/sample-delivery/">See the full delivery</a>
+          <a class="text-link" href="/samples/leadkeeper/">Open the prototype</a>
+        </div>
       </section>
 
       <section class="deliverables band" id="deliverables">
@@ -223,20 +239,24 @@
 
       <section class="scope-band">
         <div>
-          <p class="eyebrow">Hard boundary</p>
-          <h2>This is a prototype, not your production app.</h2>
+          <p class="eyebrow">Who this is not for</p>
+          <h2>Not a production app in disguise.</h2>
         </div>
         <p>
-          No production authentication, payments, sensitive customer data, app-store release, or endless revisions.
-          The job is to learn whether the core workflow deserves a real build.
+          Not for people who need a production app, login system, payment processing, app-store launch, or unlimited
+          revisions. The job is to learn whether one core workflow deserves a real build.
         </p>
       </section>
 
       <section class="pricing band" id="pricing">
         <div class="price-main">
-          <p class="eyebrow">Flat project price</p>
+          <p class="eyebrow">Founder price · early builds</p>
           <div class="price-line"><strong>$499</strong><span>USD</span></div>
           <h2>Prototype + evaluation</h2>
+          <p class="founder-note">
+            Promptlaiy is taking a small number of early builds at a flat founder price. The scope is narrow on
+            purpose: one clickable workflow, one evaluation, one revision, source included.
+          </p>
           <ul>
             <li>One focused web workflow</li>
             <li>Blunt evaluation and test plan</li>
@@ -283,6 +303,13 @@
             </p>
           </details>
           <details>
+            <summary>When do I pay?</summary>
+            <p>
+              Not when you apply. We first confirm that a useful one-workflow prototype can be defined, then send an
+              invoice. The seven-day build starts after scope approval and payment.
+            </p>
+          </details>
+          <details>
             <summary>Do I own the code?</summary>
             <p>Yes. You receive the full source ZIP and setup instructions. No equity, lock-in, or mandatory retainer.</p>
           </details>
@@ -320,7 +347,17 @@
         <div class="application-heading">
           <p class="eyebrow">Project application</p>
           <h2>Tell us what should exist.</h2>
-          <p>We review every brief manually and reply within one business day. No payment is taken here.</p>
+          <p>We review every brief manually and reply within one business day. Applying is free. No payment is taken here.</p>
+        </div>
+
+        <div class="payment-flow" aria-label="Application and payment sequence">
+          <ol>
+            <li><span>01</span><strong>Apply</strong></li>
+            <li><span>02</span><strong>Confirm scope</strong></li>
+            <li><span>03</span><strong>Receive invoice</strong></li>
+            <li><span>04</span><strong>Build starts</strong></li>
+          </ol>
+          <p>If we cannot define a useful one-workflow prototype, we will decline the project instead of taking payment.</p>
         </div>
 
         <div class="application-shell">
@@ -421,15 +458,18 @@
               <button class="button primary" id="submit-button" type="submit" hidden>Send project brief</button>
             </div>
             <p class="form-note">
-              Your draft stays in this browser until you submit or clear it. By sending, you agree we may contact you
-              about this project.
+              This is an application, not a checkout. Your draft stays in this browser until you submit or clear it.
+              By sending, you agree we may contact you about this project.
             </p>
           </form>
 
           <section class="success-state" id="success-state" hidden tabindex="-1">
             <p class="eyebrow">Brief received</p>
             <h3>We will read the whole thing.</h3>
-            <p>Expect a reply within one business day with fit, timing, and the next step. No payment has been taken.</p>
+            <p>
+              Expect a reply within one business day with fit, timing, and a proposed scope. If the scope works for
+              both of us, we send the invoice. No payment has been taken.
+            </p>
             <button class="button secondary" id="new-brief-button" type="button">Start another brief</button>
           </section>
         </div>
@@ -437,13 +477,12 @@
     </main>
 
     <footer>
-      <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true">P</span><span>Promptlaiy</span></a>
+      <a class="brand" href="/#top"><span class="brand-mark" aria-hidden="true">P</span><span>Promptlaiy</span></a>
       <p>Focused prototypes for ideas that need evidence, not applause.</p>
-      <a href="#apply">Apply for a build</a>
+      <div class="footer-links"><a href="/sample-delivery/">See sample delivery</a><a href="#apply">Apply for a build</a></div>
     </footer>
     <script src="/app.js" defer></script>
     <script src="/track.js" defer></script>
     <script src="/ui.js" defer></script>
-    <script src="/pointer.js" defer></script>
   </body>
 </html>

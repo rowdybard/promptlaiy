@@ -49,6 +49,17 @@
     ".application-heading",
     ".application-shell",
     ".article > *",
+    ".sample-hero > *",
+    ".sample-proof > *",
+    ".sample-section-heading",
+    ".messy-idea",
+    ".scope-decision",
+    ".sample-prototype-inner > *",
+    ".verdict-grid article",
+    ".evaluation-bottom-line",
+    ".validation-tests > li",
+    ".boundary-grid article",
+    ".sample-cta > *",
   ];
 
   var nodes = [];

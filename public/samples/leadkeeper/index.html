@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Leadkeeper — Clickable Sample Prototype</title>
+    <meta
+      name="description"
+      content="Try Leadkeeper, a clickable sample prototype showing how a home-service owner could review and approve drafted lead replies."
+    />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://promptlaiy.pages.dev/samples/leadkeeper/" />
+    <meta name="theme-color" content="#111713" />
+    <link rel="stylesheet" href="/leadkeeper.css" />
+  </head>
+  <body>
+    <div class="sample-banner">
+      <span><strong>Promptlaiy sample:</strong> fictional data, real interactions, nothing saved.</span>
+      <a href="/sample-delivery/">Read the full delivery →</a>
+    </div>
+
+    <div class="app-shell">
+      <header class="app-header">
+        <a class="app-brand" href="/samples/leadkeeper/" aria-label="Leadkeeper home">
+          <span aria-hidden="true">L</span>
+          <strong>Leadkeeper</strong>
+        </a>
+        <div class="business-switcher">
+          <span aria-hidden="true">RS</span>
+          <div><strong>Riverbend Services</strong><small>Owner workspace</small></div>
+        </div>
+      </header>
+
+      <main>
+        <section class="inbox-panel" aria-labelledby="inbox-title">
+          <div class="panel-heading">
+            <div><p>Today</p><h1 id="inbox-title">New leads</h1></div>
+            <span class="lead-count" id="lead-count">3 waiting</span>
+          </div>
+          <div class="lead-list" id="lead-list" role="list" aria-label="New leads"></div>
+        </section>
+
+        <section class="reply-panel" aria-labelledby="reply-title">
+          <div class="reply-header">
+            <div>
+              <p class="channel" id="lead-channel">Website inquiry</p>
+              <h2 id="reply-title">Select a lead</h2>
+              <p class="lead-meta" id="lead-meta"></p>
+            </div>
+            <span class="status-pill" id="lead-status">Needs reply</span>
+          </div>
+
+          <div class="request-card">
+            <span>Customer request</span>
+            <p id="lead-request"></p>
+          </div>
+
+          <div class="draft-heading">
+            <div><span>Draft reply</span><small>Prepared from the lead details</small></div>
+            <button class="quiet-button" id="reset-draft" type="button">Reset draft</button>
+          </div>
+          <label class="sr-only" for="draft-reply">Draft reply</label>
+          <textarea id="draft-reply" rows="8"></textarea>
+
+          <div class="reply-actions">
+            <p><span class="keyboard-key">⌘</span><span class="keyboard-key">↵</span> to approve</p>
+            <button class="approve-button" id="approve-reply" type="button">Approve reply</button>
+          </div>
+          <p class="approval-message" id="approval-message" role="status" aria-live="polite" hidden></p>
+        </section>
+      </main>
+    </div>
+
+    <script src="/leadkeeper.js" defer></script>
+  </body>
+</html>
