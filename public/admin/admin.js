@@ -829,6 +829,263 @@ Promptlaiy is the step I wish they'd taken. $499, 7 days, you get a working prot
 Happy to answer any questions about the process, the tech, or the philosophy.`,
     },
   ],
+  outreach: [
+    {
+      title: "Twitter/X DM — reference their tweet",
+      tag: "Twitter DM",
+      body: `Hey [name] — saw your tweet about [specific thing they tweeted about]. Really resonated, especially the part about [specific detail].
+
+I build clickable prototypes for founders testing ideas — $499, 7 days. Not sure if it's relevant to what you're working on, but if you're ever in the "should I build this" phase, I'd build you one for free. No strings.
+
+Either way, great thread. Keep posting.`,
+    },
+    {
+      title: "LinkedIn DM — reference their post",
+      tag: "LinkedIn DM",
+      body: `Hi [name],
+
+Read your post about [specific topic from their recent post]. The point about [specific detail] was spot on — most people miss that.
+
+I run a service building clickable prototypes for founders who want to test ideas before committing to a full build. $499, 7 days, source code included.
+
+If you're ever working through a "should I build this" decision, happy to build you a prototype on the house. No pitch, no follow-up sequence.
+
+Keep the posts coming — they're genuinely useful.`,
+    },
+    {
+      title: "Cold email — 3 sentences, no calendar link",
+      tag: "Email",
+      body: `Subject: [Specific thing they wrote/built] + a question
+
+Hi [name],
+
+Read [specific thing — their blog post, tweet, product launch, comment]. The part about [specific detail] made me think about what I'm building.
+
+I build clickable prototypes for founders — $499, 7 days, one core workflow. If you're ever testing a new idea and want a prototype to put in front of users, reply and I'll build it for free.
+
+[Your name]`,
+    },
+    {
+      title: "Reddit DM — after helpful comment exchange",
+      tag: "Reddit DM",
+      body: `Hey [name] — appreciated your comment in [subreddit] about [topic]. You clearly know your stuff.
+
+I build clickable prototypes for founders testing ideas ($499, 7 days, source code included). Based on what you said about [their specific point], I think you'd get the value of testing before building.
+
+If you've got an idea you're sitting on, I'd build you one for free. Just fill out the brief at [link] and mention this DM.
+
+No pressure either way — your comment was genuinely helpful and I wanted to return the favor.`,
+    },
+    {
+      title: "Follow-up message — 1 sentence, no guilt",
+      tag: "Follow-up",
+      body: `Hey [name] — just bumping this in case it got buried. No worries if it's not the right time.`,
+    },
+    {
+      title: "Influencer outreach — Superhuman style",
+      tag: "Influencer",
+      body: `Subject: Loved your [specific piece] — quick offer
+
+Hi [name],
+
+I read your [specific article/tweet/thread/post] about [topic]. The insight about [specific detail] was something I hadn't seen anyone else articulate.
+
+I build clickable prototypes for founders — $499, 7 days. I'd build you one for free, no strings, because I think you'd do something interesting with it.
+
+If you've got an idea sitting in a notes app somewhere, send me a one-paragraph brief and I'll have something clickable back to you in a week.
+
+[Your name]
+[Link]`,
+    },
+  ],
+  quora: [
+    {
+      title: "Quora answer — value first, link in bio",
+      tag: "Quora",
+      body: `The cheapest way to test a software idea is to build a clickable prototype — not a landing page, not a survey, something people can actually use — and put it in front of 5-10 potential users.
+
+Here's why most "validation" approaches fail:
+
+1. **Landing pages test marketing, not the product.** People click "Sign up" and you learn nothing about whether your core workflow makes sense.
+
+2. **Surveys test what people say, not what they do.** There's a massive gap between "yes, I'd use that" and actually using it.
+
+3. **Figma mockups make people polite.** They say "looks great!" because it's clearly not real. They won't give you honest feedback on something that's clearly a draft.
+
+What works: build the smallest version where the one core thing actually functions. Put it in front of 5 people. Watch them use it. Don't explain it first — see if they can figure it out.
+
+I do this as a service ($499, 7 days) but you can do it yourself. The point is: test the core workflow, not the marketing site.
+
+[Note: link goes in your Quora bio, not in the answer itself. Quora penalizes in-answer links.]`,
+    },
+    {
+      title: "Stack Exchange answer — helpful, no link",
+      tag: "Stack Exchange",
+      body: `The key question isn't "should I build my idea?" — it's "what's the cheapest way to find out if my core assumption is wrong?"
+
+For most software ideas, that means building a clickable prototype: the smallest version where the one thing that has to work actually works. Not the full app. Not a landing page. Just the core workflow.
+
+Put it in front of 5-10 potential users. Watch them try to use it without instructions. If they can't figure it out, or if they don't care, you've saved yourself months of building the wrong thing.
+
+If you want to go deeper, I wrote about the specific approach here: [link in your profile bio, not in the answer]`,
+    },
+    {
+      title: "Reddit comment — when someone asks 'how to test'",
+      tag: "Reddit",
+      body: `Don't build a landing page. Don't run a survey. Build the smallest clickable version of the core thing and put it in front of 5 people.
+
+Landing pages test marketing copy. Surveys test what people say. Neither tells you if your core workflow makes sense.
+
+Build something where the one thing that has to work actually works. Watch people use it without explaining it first. If they can't figure it out or don't care, you just saved yourself 3 months.
+
+I do this as a service ($499, 7 days) but honestly you can do it yourself in a weekend with [tool]. The point is: test the thing, not the pitch.`,
+    },
+  ],
+  partner: [
+    {
+      title: "Newsletter swap outreach",
+      tag: "Newsletter",
+      body: `Subject: Newsletter swap? [Your newsletter] x [Their newsletter]
+
+Hi [name],
+
+I read [their newsletter name] regularly — especially the issue about [specific topic]. Great stuff.
+
+I run a small newsletter / email list about [your topic] with [X] subscribers. Mostly founders and indie hackers.
+
+I'm doing newsletter swaps this month — I mention your product in my next send, you mention mine in yours. No money, no affiliate stuff, just cross-pollination between audiences that overlap.
+
+If you're interested, I can send you a draft of what I'd write about [their product]. You'd have full approval before anything goes out.
+
+[Your name]
+[Link]`,
+    },
+    {
+      title: "Guest post pitch",
+      tag: "Guest Post",
+      body: `Subject: Pitch: "Why most founders test their ideas wrong (and what to do instead)"
+
+Hi [name],
+
+I've been reading [their blog] for a while — your post about [specific topic] was particularly useful.
+
+I'd like to pitch a guest post:
+
+**Title:** Why most founders test their ideas wrong (and what to do instead)
+
+**Angle:** Most "validation" advice tells founders to build landing pages and run surveys. Both test the wrong thing. I've built [X] prototypes for founders and watched the same pattern repeat: the ones who test with clickable prototypes find out if their idea works in a week. The ones who build full products find out in 3 months.
+
+**Outline:**
+- Why landing pages test marketing, not products
+- Why surveys test what people say, not what they do
+- The clickable prototype approach (with a real example)
+- How to do it yourself without paying anyone
+
+~1,500 words. Original, not published elsewhere. I'll include one link to my site in the bio.
+
+Interested?
+
+[Your name]`,
+    },
+    {
+      title: "Podcast outreach — get on shows",
+      tag: "Podcast",
+      body: `Subject: Guest pitch — "The $499 prototype that saves founders $15k"
+
+Hi [name],
+
+Listener of [podcast name] — the episode with [specific guest] about [specific topic] was excellent.
+
+I'd love to be a guest. Here's what I can talk about:
+
+- Why most founders spend months building products nobody wants
+- The difference between a prototype and an MVP (and why most people build the wrong one first)
+- How to test a software idea in 7 days for under $500
+- What I've learned building [X] prototypes for founders
+
+I'm a [your background] developer who started building prototypes after watching three friends fail at startups the same way. I have real stories, real numbers, and I don't sugarcoat.
+
+Happy to do a pre-interview call if that's your process.
+
+[Your name]
+[Link]`,
+    },
+    {
+      title: "Complementary product co-marketing",
+      tag: "Co-marketing",
+      body: `Subject: Cross-promo idea — [Your product] + [Their product]
+
+Hi [name],
+
+I use [their product] and I think there's a natural overlap with what I do.
+
+I build clickable prototypes for founders testing ideas ($499, 7 days). Your customers are [what their customers do] — many of them are probably in the "I have an idea but I'm not sure if it's worth building" phase.
+
+Here's what I'm thinking:
+- I write a guest post for your blog about testing ideas before building
+- You mention my service in your newsletter (I'll write the blurb, you approve)
+- I offer your customers a discount (e.g. $100 off) with a code tied to your brand
+- We both win: your customers get a useful resource, I get exposure to the right audience
+
+No money changing hands. Just value swap.
+
+If this sounds interesting, I can send you a draft of the guest post this week.
+
+[Your name]
+[Link]`,
+    },
+  ],
+  press: [
+    {
+      title: "HARO response — journalist query reply",
+      tag: "HARO",
+      body: `Hi [journalist name],
+
+Re: your query about [topic from their HARO request].
+
+I build clickable prototypes for founders — $499, 7 days. I've worked with [X] founders and watched the same pattern repeat: the ones who test with prototypes before building full products succeed at [higher rate]. The ones who skip this step burn [time/money].
+
+A few data points I can share:
+- [Specific stat from your experience]
+- [Specific pattern you've observed]
+- [Specific story, anonymized if needed]
+
+I can speak to:
+- Why most "validation" advice is wrong
+- The difference between a prototype and an MVP
+- How founders can test ideas for under $500 in a week
+- Real examples of ideas that failed at the prototype stage (saving thousands)
+
+Available for a quick call or email follow-up. Here's my site: [link]
+
+[Your name]
+[Your title]`,
+    },
+    {
+      title: "Direct journalist outreach",
+      tag: "Press",
+      body: `Subject: Source for a story? Founders wasting $15k building the wrong thing
+
+Hi [journalist name],
+
+I read your [specific article] about [topic] in [publication]. Great piece — especially the point about [specific detail].
+
+I have a story you might find interesting:
+
+I build clickable prototypes for founders. $499, 7 days. After working with [X] founders, I've noticed a clear pattern: the ones who test with prototypes first succeed at [rate]. The ones who build full products first fail at [rate].
+
+I have:
+- Real data on cost/time savings
+- Anonymized stories of ideas that failed at prototype stage
+- A contrarian take on why most "startup validation" advice is wrong
+- Specific examples of founders who saved $10k+ by testing first
+
+If you're working on anything related to startups, product development, or founder mistakes, I'd be happy to be a source.
+
+[Your name]
+[Link]`,
+    },
+  ],
 };
 
 const CHECKLIST = [
@@ -1029,6 +1286,323 @@ function renderChecklist(containerId, items, storageKey) {
   });
 }
 
+/* ---------- Playbook rendering ---------- */
+function renderPlaybook() {
+  const wrap = document.getElementById("playbook-content");
+  if (!wrap) return;
+  wrap.innerHTML = "";
+
+  const daily = el("div", "playbook-block");
+  daily.innerHTML = `<span class="pb-time">20 min / day</span><h3>Daily routine</h3>
+    <ul>
+      <li><strong>5 min:</strong> Open 2-3 communities (Reddit, Discord, LinkedIn). Scan for questions you can answer. Don't post links. Don't mention your product.</li>
+      <li><strong>10 min:</strong> Answer 2-3 questions helpfully. Real answers, not "check out my site." Be the person you'd want to find when searching.</li>
+      <li><strong>5 min:</strong> Note any threads where someone describes the exact problem you solve. Save them. Don't reply yet — wait until you have enough karma/reputation in that community.</li>
+    </ul>
+    <p style="margin-top:10px">Do this for <strong>2 weeks</strong> before mentioning your product anywhere. You're building a reputation, not a sales pipeline.</p>`;
+  wrap.appendChild(daily);
+
+  const weekly = el("div", "playbook-block");
+  weekly.innerHTML = `<span class="pb-time">30 min / week</span><h3>Weekly review</h3>
+    <ul>
+      <li>Check profile views on each platform. Are they growing?</li>
+      <li>Which answers got upvotes/likes? Double down on that topic.</li>
+      <li>Any DMs or replies? Respond within 24 hours.</li>
+      <li>Any saved threads where you now have enough reputation to mention your product? Craft a <strong>value-first</strong> response, not a pitch.</li>
+      <li>Plan 1-2 posts for the coming week. Space them out across days.</li>
+    </ul>`;
+  wrap.appendChild(weekly);
+
+  const whenTo = el("div", "playbook-block");
+  whenTo.innerHTML = `<h3>When to mention your product</h3>
+    <p>The rule: <strong>answer 10 questions before pitching once.</strong> If you've been helpful, people will check your profile. That's where your link lives.</p>
+    <ul>
+      <li><strong>Someone asks directly</strong> about how to test an idea or build a prototype → mention it, but lead with value.</li>
+      <li><strong>You've been active for 2+ weeks</strong> and have karma/reputation → you've earned the right to share.</li>
+      <li><strong>Never</strong> post the same pitch in two communities. Adapt the message to each one.</li>
+      <li><strong>Never</strong> post and run. Stay for comments in the first hour. It's the most important hour.</li>
+    </ul>`;
+  wrap.appendChild(whenTo);
+
+  const tips = el("div", "playbook-block");
+  tips.innerHTML = `<h3>Channel-specific tips</h3>
+    <div class="playbook-grid">
+      <div class="playbook-tip"><h4>Reddit</h4><p>Read the subreddit rules before posting. Some ban self-promotion entirely. Use r/SideProject or r/IMadeThis for show-and-tell. Engage in comments, don't just post and leave.</p></div>
+      <div class="playbook-tip"><h4>Discord</h4><p>Be a regular. Show up daily, even for 5 minutes. Help in #help channels. When you launch, people will know you. Put your link in your bio, not in every message.</p></div>
+      <div class="playbook-tip"><h4>LinkedIn</h4><p>Comment on 5 posts from people in your target market before posting your own. Comments drive profile views. Post from your personal profile, not a company page — the algorithm favors personal accounts.</p></div>
+      <div class="playbook-tip"><h4>Twitter/X</h4><p>Reply to bigger accounts in your space. Not "great post!" — add a real point. Replies are the fastest way to build an audience from zero. Thread once a week.</p></div>
+      <div class="playbook-tip"><h4>Hacker News</h4><p>One Show HN post, ever. Make it count. Comment on threads related to your space for months beforehand. HN detects and penalizes self-promotion patterns.</p></div>
+      <div class="playbook-tip"><h4>Indie Hackers</h4><p>Post a genuine "milestone" update. People love following along. Share real numbers, real failures. The community rewards transparency.</p></div>
+    </div>`;
+  wrap.appendChild(tips);
+}
+
+/* ---------- SEO section rendering ---------- */
+function renderSEO() {
+  const wrap = document.getElementById("seo-content");
+  if (!wrap) return;
+  wrap.innerHTML = "";
+
+  const workflow = el("div", "content-block");
+  workflow.innerHTML = `<span class="cb-tag">Free workflow</span><h3>Keyword research (no paid tools)</h3>
+    <ol>
+      <li><strong>Google Keyword Planner</strong> — Free with a Google Ads account (you don't need to run ads). Enter seed keywords like "test startup idea" or "prototype MVP." Note volume and competition.</li>
+      <li><strong>Google Search Console</strong> — Already set up? Check which queries Google shows your pages for. These are free, real data — not estimates.</li>
+      <li><strong>AnswerThePublic</strong> — Free tier (3 searches/day). Enter a seed keyword and see every question people ask about it. Each question is a potential blog post.</li>
+      <li><strong>Reddit search</strong> — Search your topic in relevant subreddits. The questions people ask in Reddit are the same ones they search on Google — but with less competition.</li>
+      <li><strong>Google autocomplete</strong> — Type your seed keyword into Google and let autocomplete suggest long-tail variations. Each one is a keyword with intent.</li>
+      <li><strong>Manual SERP check</strong> — Search your target keyword. If the top 10 results are weak, outdated, or from big sites with no specific depth, you can rank. If it's all authoritative guides, pick a different keyword.</li>
+    </ol>
+    <p style="margin-top:10px">Goal: 30-50 rankable keywords in ~2 hours. Pick long-tail (100-1,000 monthly searches) over high-volume terms. Less competition, more intent.</p>`;
+  wrap.appendChild(workflow);
+
+  const calendar = el("div", "content-block");
+  calendar.innerHTML = `<span class="cb-tag">Content calendar</span><h3>Publishing schedule</h3>
+    <p><strong>Cadence:</strong> 2-4 posts per month. Consistency beats volume. One good post per week for 12 weeks beats 10 posts in week one and silence after.</p>
+    <ul>
+      <li><strong>Week 1:</strong> Long-form guide targeting one long-tail keyword (1,500-2,500 words)</li>
+      <li><strong>Week 2:</strong> Short comparison or "vs" post (800-1,200 words) — high intent, easy to rank</li>
+      <li><strong>Week 3:</strong> Long-form guide targeting another long-tail keyword</li>
+      <li><strong>Week 4:</strong> "How to" or tutorial post — captures problem-aware searchers</li>
+    </ul>
+    <p style="margin-top:10px">Each post: one target keyword, one search intent, one clear takeaway. Internal link to your service page. Add to your existing 7 guides.</p>`;
+  wrap.appendChild(calendar);
+
+  const titles = el("div", "content-block");
+  titles.innerHTML = `<span class="cb-tag">Templates</span><h3>Blog post titles that rank</h3>
+    <div class="content-grid">
+      <div class="content-card"><h4>"How to [task] in [timeframe]"</h4><p>e.g., "How to test a startup idea in 7 days" — captures problem-aware searchers with intent.</p></div>
+      <div class="content-card"><h4>"[A] vs [B]: which is right for you?"</h4><p>e.g., "Clickable prototype vs mockup: which is right for you?" — comparison posts rank well and convert.</p></div>
+      <div class="content-card"><h4>"[Number] ways to [task] (without [pain])"</h4><p>e.g., "5 ways to validate your app idea without spending $10k" — list posts with a cost-saving angle.</p></div>
+      <div class="content-card"><h4>"[Common belief] is wrong. Here's what works."</h4><p>e.g., "MVP-first is wrong. Here's why you should prototype first." — contrarian angle drives clicks and shares.</p></div>
+      <div class="content-card"><h4>"The complete guide to [topic] for [audience]"</h4><p>e.g., "The complete guide to prototyping for non-technical founders" — comprehensive, evergreen, ranks long-term.</p></div>
+    </div>`;
+  wrap.appendChild(titles);
+
+  const aiSearch = el("div", "content-block");
+  aiSearch.innerHTML = `<span class="cb-tag">2026 update</span><h3>AI search visibility</h3>
+    <p>58.5% of US searches now end without a click. AI Overviews intercept traffic. Here's how to stay visible:</p>
+    <ul>
+      <li><strong>llms.txt file</strong> — Add an <code>llms.txt</code> file at your root. AI crawlers (ChatGPT, Perplexity, Claude) prioritize it. List your best content.</li>
+      <li><strong>Schema markup</strong> — Add JSON-LD structured data to your pages. AI engines use it to understand and cite your content.</li>
+      <li><strong>Direct answers</strong> — Structure posts with clear Q&A format. AI engines extract and cite direct answers. If your post answers a question in the first paragraph, you get cited.</li>
+      <li><strong>Entity clarity</strong> — Be specific about what you are, who you serve, and what problem you solve. AI engines build entity graphs, not keyword indexes.</li>
+      <li><strong>Test with AI</strong> — Ask ChatGPT, Claude, and Perplexity about your topic. See if they cite you. If not, check who they cite and study their content structure.</li>
+    </ul>
+    <p style="margin-top:10px">Free tool: <a href="https://georion.app/free-tools" target="_blank" rel="noopener noreferrer">Georion free tools</a> — check AI visibility, generate llms.txt, test if AI cites your URL.</p>`;
+  wrap.appendChild(aiSearch);
+}
+
+/* ---------- Email section rendering ---------- */
+function renderEmail() {
+  const wrap = document.getElementById("email-content");
+  if (!wrap) return;
+  wrap.innerHTML = "";
+
+  const magnets = el("div", "content-block");
+  magnets.innerHTML = `<span class="cb-tag">Lead magnets</span><h3>5 lead magnet ideas</h3>
+    <div class="content-grid">
+      <div class="content-card"><h4>Prototype checklist PDF</h4><p>"The 12-point checklist for testing a software idea before building it." 2-page PDF. Converts at 8%+.</p></div>
+      <div class="content-card"><h4>Idea evaluation template</h4><p>A simple Notion/Google Doc template founders can copy to evaluate their own idea. Practical, not theoretical.</p></div>
+      <div class="content-card"><h4>3-day email course</h4><p>"Test your idea in 3 days" — one short email per day with one action. Day 1: define core assumption. Day 2: build smallest test. Day 3: put it in front of 5 people.</p></div>
+      <div class="content-card"><h4>Cost calculator</h4><p>"How much does building the wrong idea cost?" — simple calculator showing time × money wasted. Interactive, shareable.</p></div>
+      <div class="content-card"><h4>Prototype brief template</h4><p>The exact template you use to scope prototypes. Founders fill it out, realize they need help, become warm leads.</p></div>
+    </div>
+    <p style="margin-top:10px"><strong>Free tools:</strong> <a href="https://www.mailerlite.com" target="_blank" rel="noopener noreferrer">MailerLite</a> (free up to 1,000 subscribers, includes landing pages) or <a href="https://convertkit.com" target="_blank" rel="noopener noreferrer">ConvertKit</a> (free up to 10,000 subscribers, no landing pages on free tier).</p>`;
+  wrap.appendChild(magnets);
+
+  const sequence = el("div", "content-block");
+  sequence.innerHTML = `<span class="cb-tag">Welcome sequence</span><h3>3-email welcome sequence</h3>
+    <p><strong>Email 1 (immediate):</strong> Deliver the lead magnet. One paragraph. "Here's your [thing]. Reply and tell me what you're building — I read every reply."</p>
+    <p style="margin-top:8px"><strong>Email 2 (day 2):</strong> Short story. "Last year I watched three founders build the wrong thing. Here's what they did wrong, and how to avoid it." 200 words. No pitch.</p>
+    <p style="margin-top:8px"><strong>Email 3 (day 4):</strong> Soft pitch. "If you're sitting on an idea and not sure if it's worth building, I can build you a clickable prototype in 7 days. $499. Here's how it works: [link]." One paragraph. Clear CTA. No urgency tricks.</p>
+    <p style="margin-top:10px"><strong>Rules:</strong> No weekly newsletter — it becomes unsustainable. Send updates only when there's real news. Each email should be worth reading even if they never buy anything.</p>`;
+  wrap.appendChild(sequence);
+
+  const placement = el("div", "content-block");
+  placement.innerHTML = `<span class="cb-tag">Placement</span><h3>Where to capture emails</h3>
+    <ul>
+      <li><strong>Exit-intent popup</strong> on your homepage — offer the lead magnet. Not a "subscribe to our newsletter" (converts at 1%). A specific offer converts at 8%+.</li>
+      <li><strong>End of every blog post</strong> — "Want the checklist version of this post? Enter your email."</li>
+      <li><strong>Dedicated landing page</strong> — /free or /resources. Drive social traffic here instead of your homepage.</li>
+      <li><strong>About page</strong> — People who read your about page are interested. Give them a reason to stay in touch.</li>
+      <li><strong>404 page</strong> — Turn a dead end into an email capture. Offer the lead magnet.</li>
+    </ul>`;
+  wrap.appendChild(placement);
+}
+
+/* ---------- UTM Builder ---------- */
+function renderUTMBuilder() {
+  const wrap = document.getElementById("utm-builder");
+  if (!wrap) return;
+  wrap.innerHTML = "";
+
+  const form = el("div", "utm-form");
+  const fields = [
+    { id: "utm-url", label: "Destination URL *", placeholder: "https://promptlaiy.com" },
+    { id: "utm-source", label: "Campaign Source *", placeholder: "reddit, twitter, newsletter" },
+    { id: "utm-medium", label: "Campaign Medium *", placeholder: "social, email, referral" },
+    { id: "utm-campaign", label: "Campaign Name", placeholder: "r-startups-launch, oct-newsletter" },
+    { id: "utm-content", label: "Campaign Content", placeholder: "post-1, cta-button, header-link" },
+    { id: "utm-term", label: "Campaign Term", placeholder: "prototype-service" },
+  ];
+
+  fields.forEach((f) => {
+    const field = el("div", "utm-field");
+    const label = el("label", null, f.label);
+    label.htmlFor = f.id;
+    const input = el("input");
+    input.id = f.id;
+    input.type = "text";
+    input.placeholder = f.placeholder;
+    input.addEventListener("input", updateUTM);
+    field.appendChild(label);
+    field.appendChild(input);
+    form.appendChild(field);
+  });
+
+  wrap.appendChild(form);
+
+  const output = el("div", "utm-output");
+  const urlDisplay = el("div", "utm-url empty", "Fill in the fields above to generate a tracked URL...");
+  urlDisplay.id = "utm-result";
+  output.appendChild(urlDisplay);
+
+  const actions = el("div", "utm-actions");
+  const copyUTM = el("button", "copy-btn", "Copy URL");
+  copyUTM.id = "utm-copy";
+  copyUTM.addEventListener("click", () => {
+    const url = document.getElementById("utm-result").textContent;
+    if (url && !url.startsWith("Fill in")) copyToClipboard(url, copyUTM);
+  });
+  actions.appendChild(copyUTM);
+
+  const clearUTM = el("button", "copy-btn", "Clear");
+  clearUTM.addEventListener("click", () => {
+    fields.forEach((f) => { document.getElementById(f.id).value = ""; });
+    updateUTM();
+  });
+  actions.appendChild(clearUTM);
+  output.appendChild(actions);
+
+  const recentLabel = el("div", null, "Recent links (saved locally):");
+  recentLabel.style.fontSize = "12px";
+  recentLabel.style.fontWeight = "700";
+  recentLabel.style.color = "var(--muted)";
+  output.appendChild(recentLabel);
+
+  const recent = el("div", "utm-recent");
+  recent.id = "utm-recent";
+  output.appendChild(recent);
+
+  wrap.appendChild(output);
+  renderRecentUTMs();
+}
+
+function updateUTM() {
+  const url = document.getElementById("utm-url").value.trim();
+  const source = document.getElementById("utm-source").value.trim();
+  const medium = document.getElementById("utm-medium").value.trim();
+  const campaign = document.getElementById("utm-campaign").value.trim();
+  const content = document.getElementById("utm-content").value.trim();
+  const term = document.getElementById("utm-term").value.trim();
+  const result = document.getElementById("utm-result");
+
+  if (!url || !source || !medium) {
+    result.textContent = "Fill in URL, Source, and Medium to generate a tracked URL...";
+    result.classList.add("empty");
+    return;
+  }
+
+  const params = new URLSearchParams();
+  params.set("utm_source", source);
+  params.set("utm_medium", medium);
+  if (campaign) params.set("utm_campaign", campaign);
+  if (content) params.set("utm_content", content);
+  if (term) params.set("utm_term", term);
+
+  const separator = url.includes("?") ? "&" : "?";
+  const final = url + separator + params.toString();
+  result.textContent = final;
+  result.classList.remove("empty");
+
+  const copyBtn = document.getElementById("utm-copy");
+  copyBtn.onclick = () => {
+    copyToClipboard(final, copyBtn);
+    saveUTM(final);
+  };
+}
+
+function saveUTM(url) {
+  let saved = [];
+  try { saved = JSON.parse(localStorage.getItem("pl_utm_links") || "[]"); } catch {}
+  if (saved[0] === url) return;
+  saved.unshift(url);
+  saved = saved.slice(0, 10);
+  try { localStorage.setItem("pl_utm_links", JSON.stringify(saved)); } catch {}
+  renderRecentUTMs();
+}
+
+function renderRecentUTMs() {
+  const wrap = document.getElementById("utm-recent");
+  if (!wrap) return;
+  wrap.innerHTML = "";
+  let saved = [];
+  try { saved = JSON.parse(localStorage.getItem("pl_utm_links") || "[]"); } catch {}
+  if (!saved.length) {
+    wrap.appendChild(el("div", null, "No saved links yet."));
+    wrap.firstChild.style.fontSize = "12px";
+    wrap.firstChild.style.color = "var(--muted)";
+    return;
+  }
+  saved.forEach((url) => {
+    const item = el("div", "utm-recent-item");
+    const urlSpan = el("span", "utm-recent-url", url);
+    item.appendChild(urlSpan);
+    const copyBtn = el("button", "copy-btn", "Copy");
+    copyBtn.addEventListener("click", () => copyToClipboard(url, copyBtn));
+    item.appendChild(copyBtn);
+    wrap.appendChild(item);
+  });
+}
+
+/* ---------- Export all posts ---------- */
+function exportAllPosts() {
+  const sections = [
+    { label: "REDDIT", posts: POSTS.reddit },
+    { label: "DISCORD", posts: POSTS.discord },
+    { label: "FACEBOOK GROUPS", posts: POSTS.facebook },
+    { label: "TWITTER / X", posts: POSTS.twitter },
+    { label: "HACKER NEWS & INDIE HACKERS", posts: POSTS.hn },
+    { label: "LINKEDIN", posts: POSTS.linkedin },
+    { label: "PRODUCT HUNT", posts: POSTS.ph },
+    { label: "COLD OUTREACH (DMs & EMAIL)", posts: POSTS.outreach },
+    { label: "QUORA & ANSWER SITES", posts: POSTS.quora },
+    { label: "PARTNERSHIP & CROSS-PROMO", posts: POSTS.partner },
+    { label: "PRESS & HARO", posts: POSTS.press },
+  ];
+
+  let out = "PROMPTLAIY — MARKETING HQ EXPORT\n";
+  out += "All post templates formatted as they'd appear on each platform.\n";
+  out += "Delete bracketed [notes] before posting. Adapt tone to each community.\n";
+  out += "=" .repeat(60) + "\n\n";
+
+  sections.forEach((section) => {
+    out += "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n";
+    out += "  " + section.label + "\n";
+    out += "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n";
+    section.posts.forEach((post) => {
+      out += "▶ " + post.title + "\n";
+      out += "  Tag: " + post.tag + "\n";
+      out += "-" .repeat(50) + "\n";
+      out += post.body + "\n\n";
+      out += "-" .repeat(50) + "\n\n";
+    });
+  });
+
+  return out;
+}
+
 /* ---------- Render marketing content on unlock ---------- */
 const originalUnlock = unlock;
 unlock = function () {
@@ -1040,8 +1614,24 @@ unlock = function () {
   renderPosts("hn-posts", POSTS.hn, "hn");
   renderPosts("linkedin-posts", POSTS.linkedin, "linkedin");
   renderPosts("ph-posts", POSTS.ph, "ph");
+  renderPosts("outreach-posts", POSTS.outreach, "twitter");
+  renderPosts("quora-posts", POSTS.quora, "hn");
+  renderPosts("partner-posts", POSTS.partner, "linkedin");
+  renderPosts("press-posts", POSTS.press, "linkedin");
+  renderPlaybook();
+  renderSEO();
+  renderEmail();
+  renderUTMBuilder();
   renderChecklist("promo-checklist", CHECKLIST, "pl_promo_checklist");
   renderChecklist("directory-checklist", DIRECTORIES, "pl_directory_checklist");
+
+  const exportBtn = document.getElementById("export-all-btn");
+  if (exportBtn) {
+    exportBtn.addEventListener("click", () => {
+      const text = exportAllPosts();
+      copyToClipboard(text, exportBtn);
+    });
+  }
 };
 
 /* ---------- Boot ---------- */
