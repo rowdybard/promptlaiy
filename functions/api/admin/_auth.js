@@ -49,15 +49,17 @@ export async function requireAdmin(request, env) {
 
   const ipHash = await hashIp(request.headers.get("cf-connecting-ip"), env.ABUSE_SALT);
   if (ipHash && env.DB) {
-    const since = new Date(Date.now() - 15 * 60 * 1000).toISOString();
-    const fails = await env.DB.prepare(
-      "SELECT COUNT(*) AS count FROM security_log WHERE ip_hash = ? AND reason = 'admin_auth_fail' AND created_at >= ?"
-    )
-      .bind(ipHash, since)
-      .first();
-    if (Number(fails?.count || 0) >= 5) {
-      return { error: json({ ok: false, error: "Too many failed attempts. Try again in 15 minutes." }, 429) };
-    }
+    try {
+      const since = new Date(Date.now() - 15 * 60 * 1000).toISOString();
+      const fails = await env.DB.prepare(
+        "SELECT COUNT(*) AS count FROM security_log WHERE ip_hash = ? AND reason = 'admin_auth_fail' AND created_at >= ?"
+      )
+        .bind(ipHash, since)
+        .first();
+      if (Number(fails?.count || 0) >= 5) {
+        return { error: json({ ok: false, error: "Too many failed attempts. Try again in 15 minutes." }, 429) };
+      }
+    } catch {}
   }
 
   const header = request.headers.get("authorization") || "";

@@ -561,90 +561,97 @@ $("#next-page").addEventListener("click", () => {
 const POSTS = {
   reddit: [
     {
-      title: "r/startups — I built a thing",
+      title: "r/startups — what I learned watching 3 founders fail",
       tag: "r/startups",
-      body: `I got tired of watching founders spend 3 months and $15k building something nobody wanted. So I started building clickable prototypes in a week instead.
+      body: `Three founders I know personally built full products last year. All three failed. Not because the ideas were bad — because they built the wrong thing first.
 
-The idea is simple: you tell me what you want to build, I build the smallest version that actually works — not a mockup, not a slide deck, something you can click through and put in front of real people. Then I write up what's solid, what's weak, and what's most likely to fail.
+The pattern was identical every time:
+1. Idea → 3 months of heads-down building
+2. Launch → crickets
+3. "Maybe we need better marketing"
+4. Burnout
 
-It's $499 flat. One core workflow. One revision. You get the source code and a hosted preview for 60 days.
+Here's what I noticed: none of them put anything clickable in front of a real user before launch. Not once. They built from specs and assumptions.
 
-[Link to your site]
+The cheapest validation I've seen work: build the smallest version that actually does the core thing — not a landing page, not a Figma file, something people can click through — and watch 5 real people try to use it. You learn more in 30 minutes of watching someone struggle with your prototype than in 3 months of building in isolation.
 
-I'm not claiming this replaces building a real product. It doesn't. But it's way cheaper to find out your core assumption is wrong on day 7 than on day 90.
+I've been doing this for my own projects and helping friends do it. The pattern that works: isolate one workflow, build it end-to-end, test with real people, then decide whether the full build is worth it.
 
-Happy to answer questions about the process.`,
+Happy to answer questions about the process. No links, no pitch — just sharing what I've seen work.`,
     },
     {
-      title: "r/Entrepreneur — lesson learned",
+      title: "r/Entrepreneur — the validation checklist I use",
       tag: "r/Entrepreneur",
-      body: `Last year I watched three founders in my circle build full products before ever talking to a single user. All three failed. Not because the ideas were bad — because they built the wrong thing first.
+      body: `I've been building software for years and I've shipped plenty of things nobody wanted. Here's the checklist I run through before committing to any build now:
 
-The pattern was identical: idea → 3 months of heads-down building → launch → crickets → "maybe we need better marketing" → burnout.
+1. Can you describe the core workflow in one sentence? If you need a paragraph, it's too broad.
+2. Who is the exact person that would use this? Not "small business owners" — which ones, doing what?
+3. What are they doing today instead? If the answer is "nothing," that's usually a red flag, not an opportunity.
+4. What happens if they don't use your thing? If the answer is "nothing really changes," the problem isn't painful enough.
+5. Can you build the smallest version in a week? If not, you're probably scoping it too wide.
 
-What I learned from watching this happen three times: the cheapest way to test an idea is to build something clickable — not a landing page, not a Figma file, something people can actually use — and put it in front of 5-10 potential users.
+I don't build anything now until I can answer all five. Has saved me from at least two bad projects this year.
 
-I started doing this as a service. $499, one week, you get a working prototype + a blunt evaluation of what's likely to fail. No retainer, no "let's hop on a call to discuss your needs." You fill out a brief, I build, you get files.
+The biggest mistake I see: people skip #3 and #4. They build something "better" than what exists, but the current solution is "good enough" and people don't switch.
 
-[Link to your site]
-
-Not posting this as a sales pitch — posting because the "build less, test sooner" message needs to reach more people before they burn their savings.`,
+What's your validation process? Always looking to improve mine.`,
     },
     {
-      title: "r/SaaS — build in public",
+      title: "r/SaaS — build in public: week 1 update",
       tag: "r/SaaS",
-      body: `Building a prototype service for founders who want to test ideas without building full products.
+      body: `Started a small service business last week. Not a SaaS — a service. Building clickable prototypes for founders who want to test ideas before committing to a full build.
 
-Week 1: shipped the landing page + application form. Got [X] applicants.
+Week 1 recap:
+- Built the landing page and application form
+- Got [X] applicants so far
+- Shipped one prototype (a lead management tool for home service businesses)
 
-The pitch: $499, 7 days, you get a clickable prototype + evaluation + test plan. Source code included. No subscriptions, no upsells.
-
-What I've learned so far:
+What I've learned:
 - Founders don't want "validation services." They want something real they can show people.
-- The "7 days" part matters more than the price. Speed is the actual product.
-- Most people who fill out the form have already tried no-code tools and gotten stuck.
+- Speed matters more than price. The #1 reaction I get is "wait, you can do this in a week?"
+- Most people who apply have already tried no-code tools and gotten stuck on the last 20%
 
-[Link to your site]
+I'm keeping it to one core workflow per project. If someone's idea needs 15 features to be useful, I tell them that before taking them on.
 
-Currently [X] spots open per week. Will post updates as I go.`,
+No link in this post — just documenting the journey. Will post weekly updates.`,
     },
     {
-      title: "r/nocode — for people who got stuck",
+      title: "r/nocode — the 80% trap",
       tag: "r/nocode",
-      body: `This is for people who started building with [Bubble/Glide/Webflow/etc], got 80% done, and then realized the last 20% is the part that actually matters.
+      body: `Seeing a pattern with people who start with no-code tools: they get 80% done fast, then spend months stuck on the last 20%.
 
-I build clickable prototypes for founders. Not production apps — prototypes. The smallest version of your idea that works end-to-end, built in a week, with source code you own.
+The last 20% is always the same stuff:
+- Custom logic that the tool doesn't support natively
+- Integrations that require actual code
+- Edge cases in the core workflow that the drag-and-drop can't handle
+- Performance issues once real data is in there
 
-The difference from no-code: I build the actual interactions, not just the UI. Your core workflow works. You can put it in front of users and they can actually do the thing.
+I'm not anti-no-code. For the right project, it's the right call. But I keep seeing people use it to build the wrong thing faster.
 
-$499 flat. You get:
-- Working prototype (hosted for 60 days)
-- Source code + setup instructions
-- Blunt evaluation of what's solid and what's not
-- Three specific tests to run with users
+What's worked for me: use no-code for the prototype stage (test if the workflow makes sense), then decide whether the real build needs custom code. The trap is when people try to make the no-code prototype into the production app.
 
-[Link to your site]
-
-Not trying to compete with no-code tools — this is for the stage before you're ready to commit to building the real thing.`,
+Anyone else hit this wall? What did you do — push through or start over?`,
     },
     {
-      title: "r/smallbusiness — pain point post",
+      title: "r/smallbusiness — how I test ideas before spending real money",
       tag: "r/smallbusiness",
-      body: `If you've ever paid a developer $5k+ for an MVP only to find out the idea wasn't right, this might save you some money.
+      body: `I've wasted money building things that didn't work. Here's what I do now instead:
 
-I build prototypes. Not apps — prototypes. The smallest clickable version of your idea, done in a week, for $499.
+Before I commit to any software project, I build the smallest clickable version — one workflow, end to end. Not a landing page. Not a mockup. Something you can actually click through and use.
 
-The point isn't to launch a business on it. The point is to find out if the core thing even makes sense before you spend real money building it.
+Then I put it in front of 5 potential customers and watch them try to use it. No instructions, no walkthrough. Just "here, try this."
 
-You get:
-- A working prototype (not a mockup — people can actually click through it)
-- An honest write-up of what works and what doesn't
-- A test plan with 3 specific things to try with potential customers
-- The source code
+What I learn from that 30-minute session:
+- Whether the core workflow makes sense to anyone but me
+- Where people get confused (usually the part I thought was obvious)
+- Whether the problem is painful enough that they'd actually switch from whatever they do now
+- Whether I'm building the right thing at all
 
-[Link to your site]
+Total cost: a week of time and whatever it takes to build the prototype. Way cheaper than finding out at month 3.
 
-I keep it to one core workflow. If your idea needs 15 features to be useful, I'll tell you that before taking your money.`,
+The hardest part is scoping down to one workflow. Everything feels essential. It isn't. Pick the one thing that would make someone say "I'd use this today" and build only that.
+
+Happy to go deeper on any of this. Not selling anything — just sharing what's worked for me.`,
     },
   ],
   discord: [

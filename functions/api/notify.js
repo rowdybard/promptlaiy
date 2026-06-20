@@ -79,15 +79,17 @@ export async function onRequestPost({ request, env }) {
 
   const ipHash = await hashIp(request.headers.get("cf-connecting-ip"), env.ABUSE_SALT);
   if (ipHash) {
-    const since = new Date(Date.now() - 60 * 60 * 1000).toISOString();
-    const recent = await env.DB.prepare(
-      "SELECT COUNT(*) AS count FROM security_log WHERE ip_hash = ? AND path = '/api/notify' AND created_at >= ?"
-    )
-      .bind(ipHash, since)
-      .first();
-    if (Number(recent?.count || 0) >= 10) {
-      return json({ ok: false, error: "Rate limit exceeded. Try again later." }, 429);
-    }
+    try {
+      const since = new Date(Date.now() - 60 * 60 * 1000).toISOString();
+      const recent = await env.DB.prepare(
+        "SELECT COUNT(*) AS count FROM security_log WHERE ip_hash = ? AND path = '/api/notify' AND created_at >= ?"
+      )
+        .bind(ipHash, since)
+        .first();
+      if (Number(recent?.count || 0) >= 10) {
+        return json({ ok: false, error: "Rate limit exceeded. Try again later." }, 429);
+      }
+    } catch {}
   }
 
   const application = await env.DB.prepare(
@@ -128,15 +130,17 @@ export async function onRequestPatch({ request, env }) {
 
   const patchIpHash = await hashIp(request.headers.get("cf-connecting-ip"), env.ABUSE_SALT);
   if (patchIpHash) {
-    const since = new Date(Date.now() - 60 * 60 * 1000).toISOString();
-    const recent = await env.DB.prepare(
-      "SELECT COUNT(*) AS count FROM security_log WHERE ip_hash = ? AND path = '/api/notify' AND created_at >= ?"
-    )
-      .bind(patchIpHash, since)
-      .first();
-    if (Number(recent?.count || 0) >= 10) {
-      return json({ ok: false, error: "Rate limit exceeded. Try again later." }, 429);
-    }
+    try {
+      const since = new Date(Date.now() - 60 * 60 * 1000).toISOString();
+      const recent = await env.DB.prepare(
+        "SELECT COUNT(*) AS count FROM security_log WHERE ip_hash = ? AND path = '/api/notify' AND created_at >= ?"
+      )
+        .bind(patchIpHash, since)
+        .first();
+      if (Number(recent?.count || 0) >= 10) {
+        return json({ ok: false, error: "Rate limit exceeded. Try again later." }, 429);
+      }
+    } catch {}
   }
 
   let payload;
