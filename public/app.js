@@ -13,6 +13,7 @@ const newBriefButton = document.querySelector("#new-brief-button");
 const progressBar = document.querySelector(".meter");
 let currentStep = 0;
 let idempotencyKey = crypto.randomUUID();
+const pageLoadTime = Date.now();
 
 function loadDraft() {
   try {
@@ -171,6 +172,7 @@ form.addEventListener("submit", async (event) => {
   const data = Object.fromEntries(new FormData(form).entries());
   data.hostingInterest = document.querySelector("#hostingInterest").checked;
   data.idempotencyKey = idempotencyKey;
+  data.submitTime = Math.round((Date.now() - pageLoadTime) / 1000);
 
   try {
     const response = await fetch("/api/apply", {

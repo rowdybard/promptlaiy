@@ -12,6 +12,18 @@ const LIMITS = {
 
 const MAX_BODY_BYTES = 16_000;
 const ALLOWED_PACKAGES = new Set(["prototype", "domain", "unsure"]);
+const GLOBAL_DAILY_CAP = 20;
+const BLOCKED_EMAIL_DOMAINS = new Set([
+  "guerrillamail.com", "guerrillamail.net", "guerrillamail.org",
+  "tempmail.com", "tempmail.net", "temp-mail.org",
+  "mailinator.com", "10minutemail.com", "throwaway.email",
+  "yopmail.com", "getnada.com", "sharklasers.com",
+  "guerrillamailblock.com", "dispostable.com", "fakeinbox.com",
+]);
+
+function countUrls(text) {
+  return (String(text || "").match(/https?:\/\//gi) || []).length;
+}
 
 function clean(value, maxLength) {
   return String(value || "")
@@ -80,7 +92,7 @@ export async function onRequestPost(context) {
     return json({ ok: false, error: "Invalid request body." }, 400);
   }
 
-  if (payload.company) return json({ ok: true });
+  if (payload.company || payload.website_url) return json({ ok: true });
 
   const data = Object.fromEntries(
     Object.entries(LIMITS).map(([key, limit]) => [key, clean(payload[key], limit)])
@@ -101,6 +113,20 @@ export async function onRequestPost(context) {
   }
   if (!validEmail(data.email)) {
     return json({ ok: false, error: "Enter a valid email address." }, 400);
+  }
+  const emailDomain = data.email.split("@")[1]?.toLowerCase() || "";
+  if (BLOCKED_EMAIL_DOMAINS.has(emailDomain)) {
+    return json({ ok: false, error: "Please use a permanent email address." }, 400);
+  }
+  const totalUrls =
+    countUrls(data.idea) + countUrls(data.audience) + countUrls(data.problem) +
+    countUrls(data.alternative) + countUrls(data.urgency) + countUrls(data.smallestVersion);
+  if (totalUrls > 3) {
+    return json({ ok: false, error: "Too many links in your brief. Please remove them and try again." }, 400);
+  }
+  const submitTime = Number(payload.submitTime) || 0;
+  if (submitTime > 0 && submitTime < 3) {
+    return json({ ok: false, error: "Something went wrong. Please try again." }, 400);
   }
   if (!env.DB) {
     return json({ ok: false, error: "Applications are temporarily unavailable." }, 503);
@@ -124,6 +150,17 @@ export async function onRequestPost(context) {
   }
 
   const ipHash = await hashIp(request.headers.get("cf-connecting-ip"), env.ABUSE_SALT);
+
+  const todayStart = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
+  const globalCount = await env.DB.prepare(
+    "SELECT COUNT(*) AS count FROM prototype_requests WHERE created_at >= ?"
+  )
+    .bind(todayStart)
+    .first();
+  if (Number(globalCount?.count || 0) >= GLOBAL_DAILY_CAP) {
+    return json({ ok: false, error: "We're at capacity for today. Please try again tomorrow." }, 429);
+  }
+
   if (ipHash) {
     const since = new Date(Date.now() - 60 * 60 * 1000).toISOString();
     const recent = await env.DB.prepare(

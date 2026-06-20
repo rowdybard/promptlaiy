@@ -28,6 +28,13 @@ async function signNotification(id, salt) {
   return Array.from(new Uint8Array(signature), (byte) => byte.toString(16).padStart(2, "0")).join("");
 }
 
+async function hashIp(ip, salt) {
+  if (!ip || !salt) return "";
+  const bytes = new TextEncoder().encode(`${salt}:${ip}`);
+  const digest = await crypto.subtle.digest("SHA-256", bytes);
+  return Array.from(new Uint8Array(digest), (b) => b.toString(16).padStart(2, "0")).join("");
+}
+
 async function secureEqual(provided, expected) {
   const encoder = new TextEncoder();
   const [providedHash, expectedHash] = await Promise.all([
@@ -70,6 +77,19 @@ export async function onRequestPost({ request, env }) {
     return json({ ok: false, error: "Notifications are temporarily unavailable." }, 503);
   }
 
+  const ipHash = await hashIp(request.headers.get("cf-connecting-ip"), env.ABUSE_SALT);
+  if (ipHash) {
+    const since = new Date(Date.now() - 60 * 60 * 1000).toISOString();
+    const recent = await env.DB.prepare(
+      "SELECT COUNT(*) AS count FROM security_log WHERE ip_hash = ? AND path = '/api/notify' AND created_at >= ?"
+    )
+      .bind(ipHash, since)
+      .first();
+    if (Number(recent?.count || 0) >= 10) {
+      return json({ ok: false, error: "Rate limit exceeded. Try again later." }, 429);
+    }
+  }
+
   const application = await env.DB.prepare(
     "SELECT notification_status FROM prototype_requests WHERE id = ? LIMIT 1"
   )
@@ -105,6 +125,19 @@ export async function onRequestPatch({ request, env }) {
   const auth = await authorize(request, env);
   if (auth.error) return auth.error;
   if (!env.DB) return json({ ok: false, error: "Notifications are temporarily unavailable." }, 503);
+
+  const patchIpHash = await hashIp(request.headers.get("cf-connecting-ip"), env.ABUSE_SALT);
+  if (patchIpHash) {
+    const since = new Date(Date.now() - 60 * 60 * 1000).toISOString();
+    const recent = await env.DB.prepare(
+      "SELECT COUNT(*) AS count FROM security_log WHERE ip_hash = ? AND path = '/api/notify' AND created_at >= ?"
+    )
+      .bind(patchIpHash, since)
+      .first();
+    if (Number(recent?.count || 0) >= 10) {
+      return json({ ok: false, error: "Rate limit exceeded. Try again later." }, 429);
+    }
+  }
 
   let payload;
   try {

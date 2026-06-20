@@ -2,5 +2,6 @@ User-agent: *
 Allow: /
 Disallow: /admin
 Disallow: /api/
+Disallow: /samples/
 
 Sitemap: https://promptlaiy.pages.dev/sitemap.xml

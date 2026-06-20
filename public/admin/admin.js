@@ -60,8 +60,53 @@ function toast(message) {
 }
 
 /* ---------- Auth ---------- */
+const FAILS_KEY = "pl_admin_fails";
+const FAILS_TIMESTAMP_KEY = "pl_admin_fails_ts";
+const MAX_FAILS = 5;
+const LOCKOUT_MS = 15 * 60 * 1000;
+const SESSION_TIMEOUT_MS = 30 * 60 * 1000;
+let sessionTimer = null;
+
+function getFails() {
+  try {
+    const ts = Number(localStorage.getItem(FAILS_TIMESTAMP_KEY) || 0);
+    if (ts && Date.now() - ts > LOCKOUT_MS) {
+      localStorage.removeItem(FAILS_KEY);
+      localStorage.removeItem(FAILS_TIMESTAMP_KEY);
+      return 0;
+    }
+    return Number(localStorage.getItem(FAILS_KEY) || 0);
+  } catch {
+    return 0;
+  }
+}
+
+function incrementFails() {
+  try {
+    const count = getFails() + 1;
+    localStorage.setItem(FAILS_KEY, String(count));
+    localStorage.setItem(FAILS_TIMESTAMP_KEY, String(Date.now()));
+    return count;
+  } catch {
+    return 0;
+  }
+}
+
+function clearFails() {
+  try {
+    localStorage.removeItem(FAILS_KEY);
+    localStorage.removeItem(FAILS_TIMESTAMP_KEY);
+  } catch {}
+}
+
+function resetSessionTimer() {
+  if (sessionTimer) clearTimeout(sessionTimer);
+  sessionTimer = setTimeout(() => lock("Session timed out after 30 minutes of inactivity."), SESSION_TIMEOUT_MS);
+}
+
 function lock(message) {
   if (state.timer) clearInterval(state.timer);
+  if (sessionTimer) clearTimeout(sessionTimer);
   try {
     sessionStorage.removeItem(TOKEN_KEY);
   } catch {}
@@ -81,12 +126,24 @@ function unlock() {
   $("#dashboard").hidden = false;
   loadAll();
   state.timer = setInterval(() => loadStats(), 30000);
+  resetSessionTimer();
+  document.addEventListener("click", resetSessionTimer, { passive: true });
+  document.addEventListener("keydown", resetSessionTimer, { passive: true });
 }
 
 $("#login-form").addEventListener("submit", async (e) => {
   e.preventDefault();
   const value = $("#token").value.trim();
   if (!value) return;
+
+  const fails = getFails();
+  if (fails >= MAX_FAILS) {
+    const err = $("#login-error");
+    err.textContent = "Too many failed attempts. Try again in 15 minutes.";
+    err.hidden = false;
+    return;
+  }
+
   try {
     sessionStorage.setItem(TOKEN_KEY, value);
   } catch {}
@@ -95,9 +152,20 @@ $("#login-form").addEventListener("submit", async (e) => {
     headers: { Authorization: "Bearer " + value },
   });
   if (!probe.ok) {
-    lock(probe.status === 401 ? "Invalid token." : "Could not reach the server.");
+    if (probe.status === 401) {
+      const count = incrementFails();
+      const remaining = MAX_FAILS - count;
+      lock(remaining > 0
+        ? `Invalid token. ${remaining} attempt${remaining === 1 ? "" : "s"} remaining.`
+        : "Too many failed attempts. Try again in 15 minutes.");
+    } else if (probe.status === 429) {
+      lock("Too many failed attempts. Try again in 15 minutes.");
+    } else {
+      lock("Could not reach the server.");
+    }
     return;
   }
+  clearFails();
   unlock();
 });
 

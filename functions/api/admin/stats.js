@@ -97,7 +97,7 @@ export async function onRequestGet(context) {
     `SELECT device AS label, COUNT(*) AS count
      FROM analytics_events
      WHERE type = 'pageview' AND created_at >= ?
-     GROUP BY device ORDER BY count DESC`,
+     GROUP BY device ORDER BY count DESC LIMIT 12`,
     start
   );
 

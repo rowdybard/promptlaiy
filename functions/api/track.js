@@ -1,5 +1,14 @@
 const MAX_BODY_BYTES = 4_000;
 const ALLOWED_TYPES = new Set(["pageview", "click"]);
+const VALID_PATHS = new Set([
+  "/", "/sample-delivery/", "/samples/leadkeeper/",
+  "/validate-app-idea/", "/test-startup-idea-cheaply/",
+  "/mvp-or-validate-first/", "/mvp-prototype-cost/",
+  "/clickable-prototype-vs-mockup/", "/no-code-vs-custom-prototype/",
+  "/prototype-for-investors/",
+]);
+const SESSION_CAP = 30;
+const SESSION_WINDOW_MS = 5 * 60 * 1000;
 
 function clean(value, maxLength) {
   return String(value || "")
@@ -64,7 +73,23 @@ export async function onRequestPost(context) {
   const type = clean(payload.type, 20);
   if (!ALLOWED_TYPES.has(type)) return noStore(204);
 
+  const normalizedPath = normalizePath(payload.path);
+  if (!VALID_PATHS.has(normalizedPath)) return noStore(204);
+
   const ipHash = await hashIp(request.headers.get("cf-connecting-ip"), env.ABUSE_SALT);
+
+  const sessionRaw = clean(payload.sessionId, 64);
+  const sessionId = /^[a-zA-Z0-9-]{8,64}$/.test(sessionRaw) ? sessionRaw : "";
+
+  if (sessionId) {
+    const sessionSince = new Date(Date.now() - SESSION_WINDOW_MS).toISOString();
+    const sessionCount = await env.DB.prepare(
+      "SELECT COUNT(*) AS count FROM analytics_events WHERE session_id = ? AND created_at >= ?"
+    )
+      .bind(sessionId, sessionSince)
+      .first();
+    if (Number(sessionCount?.count || 0) >= SESSION_CAP) return noStore(204);
+  }
 
   if (ipHash) {
     const since = new Date(Date.now() - 60 * 1000).toISOString();
@@ -76,9 +101,6 @@ export async function onRequestPost(context) {
     if (Number(recent?.count || 0) >= 120) return noStore(204);
   }
 
-  const sessionRaw = clean(payload.sessionId, 64);
-  const sessionId = /^[a-zA-Z0-9-]{8,64}$/.test(sessionRaw) ? sessionRaw : "";
-
   try {
     await env.DB.prepare(
       `INSERT INTO analytics_events (
@@ -89,7 +111,7 @@ export async function onRequestPost(context) {
       .bind(
         crypto.randomUUID(),
         type,
-        normalizePath(payload.path),
+        normalizedPath,
         clean(payload.target, 120),
         hostOf(payload.referrer),
         clean(payload.utmSource, 60),

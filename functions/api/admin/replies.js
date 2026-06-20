@@ -20,7 +20,7 @@ export async function onRequestGet(context) {
   const from = clean(url.searchParams.get("from"), 30);
   const to = clean(url.searchParams.get("to"), 30);
   const hosting = clean(url.searchParams.get("hosting"), 5);
-  const limit = Math.min(Math.max(Number(url.searchParams.get("limit")) || 50, 1), 200);
+  const limit = Math.min(Math.max(Number(url.searchParams.get("limit")) || 50, 1), 100);
   const offset = Math.max(Number(url.searchParams.get("offset")) || 0, 0);
 
   const where = [];
