@@ -38,7 +38,14 @@
         </div>
       </header>
 
+      <nav class="main-tabs" id="main-tabs" role="tablist" aria-label="Dashboard sections">
+        <button class="main-tab active" data-tab="analytics" role="tab" aria-selected="true">Analytics &amp; Replies</button>
+        <button class="main-tab" data-tab="marketing" role="tab" aria-selected="false">Marketing HQ</button>
+      </nav>
+
       <main class="admin-main">
+        <!-- Analytics tab -->
+        <div class="tab-panel active" id="tab-analytics" role="tabpanel">
         <section class="kpis" id="kpis" aria-label="Key metrics"></section>
 
         <section class="panel chart-panel">
@@ -112,6 +119,66 @@
             <button class="btn ghost" id="next-page">Next</button>
           </div>
         </section>
+        </div><!-- /tab-analytics -->
+
+        <!-- Marketing HQ tab -->
+        <div class="tab-panel" id="tab-marketing" role="tabpanel" hidden>
+          <section class="panel">
+            <div class="panel-head">
+              <h2>Promotion playbook</h2>
+              <span class="muted-count">$0 budget &middot; no spam &middot; no AI slop</span>
+            </div>
+            <div class="promo-intro">
+              <p>Every post below is written to sound like a real person wrote it in 10 minutes, not a bot. Copy, tweak the specifics, post. Don't post all of them on the same day. Space them out. Engage with comments within the first hour.</p>
+              <p class="promo-rules"><strong>Rules:</strong> Read the room before posting. Adapt tone to each community. Never copy-paste the same post into two subreddits. Delete the bracketed notes before posting.</p>
+            </div>
+          </section>
+
+          <section class="panel">
+            <div class="panel-head"><h2>Reddit</h2><span class="muted-count">5 templates</span></div>
+            <div class="post-grid" id="reddit-posts"></div>
+          </section>
+
+          <section class="panel">
+            <div class="panel-head"><h2>Discord communities</h2><span class="muted-count">3 templates</span></div>
+            <div class="post-grid" id="discord-posts"></div>
+          </section>
+
+          <section class="panel">
+            <div class="panel-head"><h2>Facebook groups</h2><span class="muted-count">3 templates</span></div>
+            <div class="post-grid" id="facebook-posts"></div>
+          </section>
+
+          <section class="panel">
+            <div class="panel-head"><h2>Twitter / X</h2><span class="muted-count">4 templates</span></div>
+            <div class="post-grid" id="twitter-posts"></div>
+          </section>
+
+          <section class="panel">
+            <div class="panel-head"><h2>Hacker News &amp; Indie Hackers</h2><span class="muted-count">3 templates</span></div>
+            <div class="post-grid" id="hn-posts"></div>
+          </section>
+
+          <section class="panel">
+            <div class="panel-head"><h2>LinkedIn</h2><span class="muted-count">2 templates</span></div>
+            <div class="post-grid" id="linkedin-posts"></div>
+          </section>
+
+          <section class="panel">
+            <div class="panel-head"><h2>Product Hunt (when ready)</h2><span class="muted-count">2 templates</span></div>
+            <div class="post-grid" id="ph-posts"></div>
+          </section>
+
+          <section class="panel">
+            <div class="panel-head"><h2>Free promotion checklist</h2></div>
+            <div class="checklist" id="promo-checklist"></div>
+          </section>
+
+          <section class="panel">
+            <div class="panel-head"><h2>Directories &amp; listings</h2></div>
+            <div class="checklist" id="directory-checklist"></div>
+          </section>
+        </div><!-- /tab-marketing -->
       </main>
     </div>
 
