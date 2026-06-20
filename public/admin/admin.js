@@ -1228,6 +1228,48 @@ $("#main-tabs").addEventListener("click", (e) => {
   }
 });
 
+/* ---------- Template settings ---------- */
+const SETTINGS_KEY = "pl_marketing_settings";
+let SETTINGS = {
+  price: "$499",
+  timeframe: "7 days",
+  url: "https://promptlaiy.pages.dev",
+  background: "solo developer building focused prototypes for founders",
+  spots: "2",
+};
+
+function loadSettings() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(SETTINGS_KEY) || "{}");
+    SETTINGS = Object.assign(SETTINGS, saved);
+  } catch {}
+  const setEl = (id, key) => { const e = document.getElementById(id); if (e) e.value = SETTINGS[key] || ""; };
+  setEl("set-price", "price");
+  setEl("set-timeframe", "timeframe");
+  setEl("set-url", "url");
+  setEl("set-bg", "background");
+  setEl("set-spots", "spots");
+}
+
+function saveSettings() {
+  const getEl = (id) => (document.getElementById(id)?.value || "").trim();
+  SETTINGS.price = getEl("set-price") || SETTINGS.price;
+  SETTINGS.timeframe = getEl("set-timeframe") || SETTINGS.timeframe;
+  SETTINGS.url = getEl("set-url") || SETTINGS.url;
+  SETTINGS.background = getEl("set-bg") || SETTINGS.background;
+  SETTINGS.spots = getEl("set-spots") || SETTINGS.spots;
+  try { localStorage.setItem(SETTINGS_KEY, JSON.stringify(SETTINGS)); } catch {}
+}
+
+function applyVariables(text) {
+  return String(text || "")
+    .replace(/\$499/g, SETTINGS.price)
+    .replace(/7 days/g, SETTINGS.timeframe)
+    .replace(/https:\/\/promptlaiy\.pages\.dev/g, SETTINGS.url)
+    .replace(/solo developer building focused prototypes for founders/g, SETTINGS.background)
+    .replace(/\bspots\b/gi, SETTINGS.spots + " spots");
+}
+
 /* ---------- Post rendering ---------- */
 function renderPosts(containerId, posts, platformTag) {
   const wrap = document.getElementById(containerId);
@@ -1241,13 +1283,14 @@ function renderPosts(containerId, posts, platformTag) {
     head.appendChild(el("span", "post-card-tag " + platformTag, post.tag));
     card.appendChild(head);
 
-    const body = el("div", "post-body", post.body);
+    const bodyText = applyVariables(post.body);
+    const body = el("div", "post-body", bodyText);
     card.appendChild(body);
 
     const foot = el("div", "post-card-foot");
     const copyBtn = el("button", "copy-btn", "Copy");
     copyBtn.addEventListener("click", () => {
-      copyToClipboard(post.body, copyBtn);
+      copyToClipboard(bodyText, copyBtn);
     });
     foot.appendChild(copyBtn);
     card.appendChild(foot);
@@ -1675,6 +1718,12 @@ function exportAllPosts() {
 const originalUnlock = unlock;
 unlock = function () {
   originalUnlock();
+  loadSettings();
+  renderAllMarketing();
+  setupMarketingInteractions();
+};
+
+function renderAllMarketing() {
   renderPosts("reddit-posts", POSTS.reddit, "reddit");
   renderPosts("discord-posts", POSTS.discord, "discord");
   renderPosts("facebook-posts", POSTS.facebook, "facebook");
@@ -1692,7 +1741,9 @@ unlock = function () {
   renderUTMBuilder();
   renderChecklist("promo-checklist", CHECKLIST, "pl_promo_checklist");
   renderChecklist("directory-checklist", DIRECTORIES, "pl_directory_checklist");
+}
 
+function setupMarketingInteractions() {
   const exportBtn = document.getElementById("export-all-btn");
   if (exportBtn) {
     exportBtn.addEventListener("click", () => {
@@ -1700,7 +1751,40 @@ unlock = function () {
       copyToClipboard(text, exportBtn);
     });
   }
-};
+
+  const downloadBtn = document.getElementById("download-all-btn");
+  if (downloadBtn) {
+    downloadBtn.addEventListener("click", () => {
+      const text = exportAllPosts();
+      const blob = new Blob([text], { type: "text/plain" });
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = "promptlaiy-marketing-posts.txt";
+      a.click();
+      URL.revokeObjectURL(a.href);
+    });
+  }
+
+  const saveBtn = document.getElementById("save-settings");
+  if (saveBtn) {
+    saveBtn.addEventListener("click", () => {
+      saveSettings();
+      renderAllMarketing();
+      toast("Settings saved. Templates refreshed.");
+    });
+  }
+
+  const searchInput = document.getElementById("post-search");
+  if (searchInput) {
+    searchInput.addEventListener("input", () => {
+      const query = searchInput.value.toLowerCase().trim();
+      document.querySelectorAll(".post-card").forEach((card) => {
+        const text = card.textContent.toLowerCase();
+        card.style.display = query && !text.includes(query) ? "none" : "";
+      });
+    });
+  }
+}
 
 /* ---------- Boot ---------- */
 if (token()) {

@@ -1,0 +1,17 @@
+# Promptlaiy
+> Focused prototypes for ideas that need evidence, not applause.
+
+## Service
+- [Promptlaiy](https://promptlaiy.pages.dev/): $499 clickable prototype in 7 days. One workflow, one evaluation, source code included.
+
+## Guides
+- [How to validate a software idea](https://promptlaiy.pages.dev/validate-app-idea/): Define the riskiest assumption, build the smallest clickable test, test with real users.
+- [How to test a startup idea cheaply](https://promptlaiy.pages.dev/test-startup-idea-cheaply/): Cheap experiments that produce real evidence before you build.
+- [MVP or validate first](https://promptlaiy.pages.dev/mvp-or-validate-first/): When to build an MVP vs. validate with a prototype first.
+- [MVP prototype cost](https://promptlaiy.pages.dev/mvp-prototype-cost/): What an MVP prototype should cost in 2026.
+- [Clickable prototype vs mockup](https://promptlaiy.pages.dev/clickable-prototype-vs-mockup/): Which proves demand — a clickable prototype or a static mockup?
+- [No-code vs custom prototype](https://promptlaiy.pages.dev/no-code-vs-custom-prototype/): Speed, cost, realism, and ownership compared.
+- [Prototype for investors](https://promptlaiy.pages.dev/prototype-for-investors/): What investors want from a prototype and how to build one fast.
+
+## Sample
+- [Sample delivery: Leadkeeper](https://promptlaiy.pages.dev/sample-delivery/): Full case study of a delivered prototype.

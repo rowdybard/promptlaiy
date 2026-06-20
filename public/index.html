@@ -19,14 +19,14 @@
     />
     <meta property="og:url" content="https://promptlaiy.pages.dev/" />
     <meta property="og:site_name" content="Promptlaiy" />
-    <meta property="og:image" content="https://promptlaiy.pages.dev/og-image.svg" />
+    <meta property="og:image" content="https://promptlaiy.pages.dev/og-image.png" />
     <meta property="og:image:alt" content="Promptlaiy - your software idea, made clickable in 7 days for a flat $499." />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Validate your app idea in 7 days with a clickable prototype" />
     <meta name="twitter:description" content="One focused prototype, one blunt evaluation, source ownership, and a live preview. Flat $499." />
-    <meta name="twitter:image" content="https://promptlaiy.pages.dev/og-image.svg" />
+    <meta name="twitter:image" content="https://promptlaiy.pages.dev/og-image.png" />
     <meta name="theme-color" content="#f6f3e9" />
     <link rel="stylesheet" href="/styles.css" />
     <script type="application/ld+json">
@@ -38,7 +38,7 @@
             "@id": "https://promptlaiy.pages.dev/#org",
             "name": "Promptlaiy",
             "url": "https://promptlaiy.pages.dev/",
-            "logo": "https://promptlaiy.pages.dev/og-image.svg",
+            "logo": "https://promptlaiy.pages.dev/og-image.png",
             "description": "A focused prototype and evaluation service that turns one software idea into a clickable prototype in seven days."
           },
           {
@@ -161,6 +161,13 @@
             <a href="/sample-delivery/">Inspect delivery →</a>
           </div>
         </figure>
+      </section>
+
+      <section class="trust-strip" aria-label="Why trust Promptlaiy">
+        <span>Reviewed manually</span>
+        <span>Reply in 1 business day</span>
+        <span>No payment until scope confirmed</span>
+        <span>Source code included</span>
       </section>
 
       <section class="promise-strip" aria-label="Promptlaiy promise">
@@ -346,7 +353,7 @@
       <section class="application band" id="apply">
         <div class="application-heading">
           <p class="eyebrow">Project application</p>
-          <h2>Tell us what should exist.</h2>
+          <h2>3 questions. 2 minutes. 0 cost.</h2>
           <p>We review every brief manually and reply within one business day. Applying is free. No payment is taken here.</p>
         </div>
 
@@ -364,18 +371,14 @@
           <aside aria-label="Application progress">
             <div class="progress-copy">
               <span>Brief progress</span>
-              <strong id="progress-label" aria-live="polite">1 of 7</strong>
+              <strong id="progress-label" aria-live="polite">1 of 3</strong>
             </div>
-            <div class="meter" role="progressbar" aria-label="Project brief progress" aria-valuemin="1" aria-valuemax="7" aria-valuenow="1">
+            <div class="meter" role="progressbar" aria-label="Project brief progress" aria-valuemin="1" aria-valuemax="3" aria-valuenow="1">
               <i id="progress-meter"></i>
             </div>
             <ol id="step-list">
-              <li class="active">The idea</li>
-              <li>The audience</li>
-              <li>The pain</li>
-              <li>Current behavior</li>
-              <li>Why now</li>
-              <li>Smallest version</li>
+              <li class="active">Your idea</li>
+              <li>Who it's for</li>
               <li>Contact</li>
             </ol>
           </aside>
@@ -383,47 +386,21 @@
           <form id="application-form" novalidate>
             <div class="form-step" data-step="0">
               <p class="step-kicker">Step 1</p>
-              <label for="idea">Dump the messy version.</label>
-              <p>No pitch-deck voice. Describe the thing you keep thinking about.</p>
+              <label for="idea">What do you want to build?</label>
+              <p>No pitch-deck voice. Describe the thing you keep thinking about. What's the smallest version that would be useful?</p>
               <textarea id="idea" name="idea" minlength="30" maxlength="3000" required placeholder="I want to build..."></textarea>
             </div>
 
             <div class="form-step" data-step="1" hidden>
               <p class="step-kicker">Step 2</p>
-              <label for="audience">Who is this for?</label>
+              <label for="audience">Who is it for and what problem does it solve?</label>
               <p>Name the exact person, team, or business that would use it.</p>
-              <textarea id="audience" name="audience" minlength="10" maxlength="1000" required></textarea>
+              <textarea id="audience" name="audience" minlength="10" maxlength="1000" required placeholder="Who would use this?"></textarea>
+              <p>What problem does it solve? What are they doing today instead? Why would they care now?</p>
+              <textarea id="problem" name="problem" minlength="10" maxlength="1000" required placeholder="What pain does this fix?"></textarea>
             </div>
 
-            <div class="form-step" data-step="2" hidden>
-              <p class="step-kicker">Step 3</p>
-              <label for="problem">What painful problem does it solve?</label>
-              <p>What currently wastes time, loses money, creates risk, or makes someone miserable?</p>
-              <textarea id="problem" name="problem" minlength="10" maxlength="1000" required></textarea>
-            </div>
-
-            <div class="form-step" data-step="3" hidden>
-              <p class="step-kicker">Step 4</p>
-              <label for="alternative">What do they do now instead?</label>
-              <p>The competition may be a spreadsheet, an assistant, another tool, or doing nothing.</p>
-              <textarea id="alternative" name="alternative" minlength="10" maxlength="1000" required></textarea>
-            </div>
-
-            <div class="form-step" data-step="4" hidden>
-              <p class="step-kicker">Step 5</p>
-              <label for="urgency">Why would they care today?</label>
-              <p>Look for a deadline, recent change, penalty, or reason this cannot wait a year.</p>
-              <textarea id="urgency" name="urgency" minlength="10" maxlength="1000" required></textarea>
-            </div>
-
-            <div class="form-step" data-step="5" hidden>
-              <p class="step-kicker">Step 6</p>
-              <label for="smallestVersion">What is the smallest useful version?</label>
-              <p>One person, one workflow, one useful outcome.</p>
-              <textarea id="smallestVersion" name="smallestVersion" minlength="10" maxlength="1000" required></textarea>
-            </div>
-
-            <div class="form-step contact-step" data-step="6" hidden>
+            <div class="form-step contact-step" data-step="2" hidden>
               <p class="step-kicker">Final step</p>
               <div class="field-grid">
                 <div>
@@ -485,6 +462,9 @@
       <p>Focused prototypes for ideas that need evidence, not applause.</p>
       <div class="footer-links"><a href="/sample-delivery/">See sample delivery</a><a href="#apply">Apply for a build</a></div>
     </footer>
+    <div class="sticky-cta" id="sticky-cta" hidden>
+      <a href="#apply" class="button primary">Apply for a build · $499 · 7 days</a>
+    </div>
     <script src="/app.js" defer></script>
     <script src="/track.js" defer></script>
     <script src="/ui.js" defer></script>

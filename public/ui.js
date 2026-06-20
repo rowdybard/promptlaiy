@@ -149,4 +149,13 @@
       hero.style.setProperty("--hero-pan-back-y", "0px");
     });
   }
+
+  const stickyCta = document.getElementById("sticky-cta");
+  if (stickyCta) {
+    const hero = document.querySelector(".hero");
+    const threshold = hero ? hero.offsetHeight * 0.8 : window.innerHeight * 0.8;
+    window.addEventListener("scroll", function () {
+      stickyCta.hidden = window.scrollY < threshold;
+    }, { passive: true });
+  }
 })();

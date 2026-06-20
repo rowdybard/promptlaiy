@@ -29,6 +29,7 @@ function saveDraft() {
     data.hostingInterest = document.querySelector("#hostingInterest").checked;
     data.idempotencyKey = idempotencyKey;
     delete data.company;
+    delete data.website_url;
     localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
   } catch {
     // The form still works when browser storage is blocked.
@@ -113,7 +114,7 @@ async function relayOwnerNotification(data, result) {
 
 function activeFields() {
   return Array.from(steps[currentStep].querySelectorAll("input, select, textarea")).filter(
-    (field) => field.name !== "company"
+    (field) => field.name !== "company" && field.name !== "website_url"
   );
 }
 
@@ -173,6 +174,9 @@ form.addEventListener("submit", async (event) => {
   data.hostingInterest = document.querySelector("#hostingInterest").checked;
   data.idempotencyKey = idempotencyKey;
   data.submitTime = Math.round((Date.now() - pageLoadTime) / 1000);
+  data.alternative = data.problem;
+  data.urgency = data.problem;
+  data.smallestVersion = data.idea;
 
   try {
     const response = await fetch("/api/apply", {

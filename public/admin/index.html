@@ -125,6 +125,21 @@
         <div class="tab-panel" id="tab-marketing" role="tabpanel" hidden>
           <section class="panel">
             <div class="panel-head">
+              <h2>Template settings</h2>
+              <span class="muted-count">Variables auto-replace in all templates</span>
+            </div>
+            <div class="settings-grid" id="settings-grid">
+              <label>Price <input id="set-price" type="text" value="$499" /></label>
+              <label>Timeframe <input id="set-timeframe" type="text" value="7 days" /></label>
+              <label>Service URL <input id="set-url" type="text" value="https://promptlaiy.pages.dev" /></label>
+              <label>Background <input id="set-bg" type="text" value="solo developer building focused prototypes for founders" /></label>
+              <label>Spots/week <input id="set-spots" type="text" value="2" /></label>
+              <button class="button primary" id="save-settings" type="button">Save &amp; refresh templates</button>
+            </div>
+          </section>
+
+          <section class="panel">
+            <div class="panel-head">
               <h2>Promotion playbook</h2>
               <span class="muted-count">$0 budget &middot; no spam &middot; no AI slop</span>
             </div>
@@ -213,7 +228,11 @@
           <section class="panel">
             <div class="panel-head">
               <h2>Export all posts</h2>
-              <button class="copy-btn" id="export-all-btn">Export everything</button>
+              <div class="export-actions">
+                <input type="search" id="post-search" placeholder="Search templates..." class="search-input" />
+                <button class="copy-btn" id="export-all-btn">Export everything</button>
+                <button class="copy-btn" id="download-all-btn">Download .txt</button>
+              </div>
             </div>
             <div class="promo-intro"><p>Exports all post templates formatted as they'd appear on each platform. Paste into a doc, share with a collaborator, or feed to another AI for review.</p></div>
           </section>
